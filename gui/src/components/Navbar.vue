@@ -1,8 +1,19 @@
 <template>
-  <div>
-    <md-toolbar class="md-primary">
-      <h3 class="md-title">Primary</h3>
-    </md-toolbar>
+  <div class="mainNav">
+    <v-app-bar color="deep-purple accent-4" dense white>
+      <v-toolbar-title>Bal</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      <v-btn class="ma-2" outlined color="indigo" to="/products"
+        >Products</v-btn
+      >
+      <v-btn class="ma-2" outlined color="indigo" to="/about">About</v-btn>
+      <v-spacer></v-spacer>
+      <v-btn class="ma-2" outlined color="indigo" to="/login">Login</v-btn>
+      <v-btn class="ma-2" outlined color="indigo" to="/register"
+        >Register</v-btn
+      >
+    </v-app-bar>
   </div>
 </template>
 
@@ -13,9 +24,7 @@ export default {
 </script>
 
 <style scoped>
-.md-toolbar {
-  background: #42b983;
-  margin-top: 16px;
-  color: white;
+.ma-2 {
+  margin-left: 5px;
 }
 </style>
