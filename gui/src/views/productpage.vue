@@ -30,11 +30,29 @@ export default {
           id: 3,
           name: "product3",
           price: 22.2
+        },
+        {
+          id: 4,
+          name: "product4",
+          price: 13
+        },
+        {
+          id: 5,
+          name: "product5",
+          price: 13
+        },
+        {
+          id: 6,
+          name: "product6",
+          price: 13
+        },
+        {
+          id: 7,
+          name: "product7",
+          price: 13
         }
       ]
     };
   }
 };
 </script>
-
-<style scoped></style>

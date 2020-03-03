@@ -1,14 +1,10 @@
 <template>
-  <div class="footer">
-    <footer class="footerPrimary">
-      <div class="container">
-        <div class="columns">
-          <div class="column">
-            <p>dit is een test</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <div class="footerPrimary">
+    <v-footer fixed class="font-weight-medium">
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Bal.com</strong>
+      </v-col>
+    </v-footer>
   </div>
 </template>
 
@@ -19,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-.footerPrimary {
+/* .footerPrimary {
   background: #42b983;
   padding: 6px;
   position: fixed;
@@ -28,5 +24,5 @@ export default {
   left: 0;
   display: inline-block;
   color: white;
-}
+} */
 </style>
