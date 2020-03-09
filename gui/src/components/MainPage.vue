@@ -1,13 +1,16 @@
 <template>
-  <div class="mainPage">
+  <v-container>
     <h1>{{ msg }}</h1>
-    <p>Dit is Bal.com<br /></p>
-  </div>
+    <p>
+      Dit is Bal.com
+      <br />
+    </p>
+  </v-container>
 </template>
 
 <script>
 export default {
-  name: "mainPage",
+  name: "main0Page",
   props: {
     msg: String
   }
