@@ -1,21 +1,58 @@
 <template>
-  <div>
-    <v-app-bar color="primary" dense white>
+  <nav>
+    <v-app-bar color="white" dense white app>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>Bal</v-toolbar-title>
-
+      <!-- <v-toolbar-side-icon
+        class="grey--text"
+        @click="drawer = !drawer"
+      ></v-toolbar-side-icon> -->
       <v-spacer></v-spacer>
-      <v-btn class="ma-2" outlined color="primary" to="/products">Products</v-btn>
+      <v-btn class="ma-2" outlined color="primary" to="/products"
+        >Products</v-btn
+      >
       <v-btn class="ma-2" outlined color="primary" to="/about">About</v-btn>
       <v-spacer></v-spacer>
       <v-btn class="ma-2" outlined color="primary" to="/login">Login</v-btn>
-      <v-btn class="ma-2" outlined color="primary" to="/register">Register</v-btn>
+      <v-btn class="ma-2" outlined color="primary" to="/register"
+        >Register</v-btn
+      >
     </v-app-bar>
-  </div>
+
+    <v-navigation-drawer v-model="drawer" absolute temporary app>
+      <v-list nav dense app>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Account</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+  </nav>
 </template>
 
 <script>
 export default {
-  name: "Navbar"
+  data() {
+    return {
+      drawer: true
+    };
+  },
+
+  name: "NavbarComponent"
 };
 </script>
 

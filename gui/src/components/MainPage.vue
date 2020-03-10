@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "main0Page",
+  name: "mainPage",
   props: {
     msg: String
   }

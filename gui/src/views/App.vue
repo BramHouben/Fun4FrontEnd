@@ -1,21 +1,27 @@
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <app-header></app-header>
     <router-view></router-view>
 
     <app-footer></app-footer>
-  </div>
+  </div>-->
+
+  <v-app id="app">
+    <app-header></app-header>
+
+    <router-view />
+  </v-app>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import NavbarComponent from "@/components/Navbar";
+// import Footer from "@/components/Footer";
 
 export default {
   name: "App",
   components: {
-    "app-header": Navbar,
-    "app-footer": Footer
+    "app-header": NavbarComponent
+    // "app-footer": Footer
   }
 };
 </script>
