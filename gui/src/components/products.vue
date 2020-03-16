@@ -1,8 +1,4 @@
 <template>
-  <!-- <div v-bind:key="product.id" v-for="product in products">
-      <h2>Name: {{product.name}}</h2>
-      <h4>Price: {{product.price}}</h4>
-  </div>-->
   <v-content>
     <v-container grid-list-md>
       <v-layout row justify-space-around>
@@ -14,7 +10,6 @@
             <v-card-subtitle class="pb-0"
               >{{ product.price }} Euro</v-card-subtitle
             >
-
             <v-card-actions>
               <v-btn icon color="pink">
                 <v-icon>mdi-heart</v-icon>
