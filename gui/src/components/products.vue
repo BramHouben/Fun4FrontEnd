@@ -15,7 +15,7 @@
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn class="btnBuy" text>Kopen</v-btn>
+              <v-btn class="btnBuy" @click="addToCart()" text>Kopen</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -27,7 +27,11 @@
 <script>
 export default {
   name: "Products",
-  props: ["products"]
+  props: ["products"],
+
+  methods: {
+    addToCart() {}
+  }
 };
 </script>
 
