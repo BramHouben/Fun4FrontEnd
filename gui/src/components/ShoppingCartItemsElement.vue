@@ -4,15 +4,15 @@
       <v-btn color="primary" dark v-on="on">Winkelmand</v-btn>
     </template>
     <v-card>
-      <v-card-title>Winkelwagen</v-card-title>
+      <v-card-title>Winkelmand</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;"></v-card-text>
       <li v-for="product in products" v-bind:key="product.product.id">
-        {{ product.product.name }}
+        {{ product.product.id+" "+product.product.name+" "+ product.product.price +" Aantal "+ product.aantal }}
         <v-divider></v-divider>
       </li>
       <v-card-actions>
-        <v-btn color="blue darken-1" text @click="dialog = false">Kopen</v-btn>
+        <v-btn color="blue darken-1" text @click="BuyItems()">Kopen</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -22,12 +22,18 @@
 export default {
   name: "cartLive",
 
-  // props: ["productlist"],
+  props: ["productlist"],
   data() {
     return {
       dialog: false,
-      drawer: true
+      drawer: false
     };
+  },
+  methods: {
+    BuyItems() {
+      alert("Kopen moet nog gebeuren");
+      this.dialog = false;
+    }
   },
   computed: {
     products() {
