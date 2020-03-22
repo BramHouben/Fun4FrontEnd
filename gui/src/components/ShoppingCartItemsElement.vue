@@ -7,8 +7,8 @@
       <v-card-title>Winkelwagen</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;"></v-card-text>
-      <li v-for="(item, index) in productlist" v-bind:key="index">
-        {{ item }}
+      <li v-for="product in products" v-bind:key="product.product.id">
+        {{ product.product.name }}
         <v-divider></v-divider>
       </li>
       <v-card-actions>
@@ -21,18 +21,17 @@
 <script>
 export default {
   name: "cartLive",
-  productlist: [],
+
   // props: ["productlist"],
   data() {
     return {
       dialog: false,
-      drawer: true,
-      productlist: ["test1", "test2"]
+      drawer: true
     };
   },
-  methods: {
-    addProduct() {
-      this.productlist.push({ product: this.newProduct });
+  computed: {
+    products() {
+      return this.$store.state.products;
     }
   }
 };

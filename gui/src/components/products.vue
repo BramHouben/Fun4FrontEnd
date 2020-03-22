@@ -7,13 +7,15 @@
             <v-img class="black--text align-end" height="200px" src>
               <v-card-title>{{ product.name }}</v-card-title>
             </v-img>
-            <v-card-subtitle class="pb-0">{{ product.price }} Euro</v-card-subtitle>
+            <v-card-subtitle class="pb-0"
+              >{{ product.price }} Euro</v-card-subtitle
+            >
             <v-card-actions>
               <v-btn icon color="pink">
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn class="btnBuy" v-on:click="addToCart">Kopen</v-btn>
+              <v-btn v-on:click="addToCart(product)">Kopen</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -33,11 +35,16 @@ export default {
   // },
 
   methods: {
-    addToCart: function(event) {
-      alert("test");
+    addToCart: function(product) {
+      // alert("test " + this.newproduct);
+
       if (event) {
-        console.log("productkopen");
-        this.$emit("test");
+        // alert(product.name);
+        alert(product);
+        this.$store.dispatch("addProduct", {
+          product: product,
+          aantal: 1
+        });
       }
     }
   }
