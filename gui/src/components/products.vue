@@ -7,15 +7,13 @@
             <v-img class="black--text align-end" height="200px" src>
               <v-card-title>{{ product.name }}</v-card-title>
             </v-img>
-            <v-card-subtitle class="pb-0"
-              >{{ product.price }} Euro</v-card-subtitle
-            >
+            <v-card-subtitle class="pb-0">{{ product.price }} Euro</v-card-subtitle>
             <v-card-actions>
               <v-btn icon color="pink">
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn class="btnBuy" @click="addToCart()" text>Kopen</v-btn>
+              <v-btn class="btnBuy" v-on:click="addToCart">Kopen</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -25,12 +23,23 @@
 </template>
 
 <script>
+// import cartLive from "@/components/ShoppingCartItemsElement";
 export default {
   name: "Products",
   props: ["products"],
 
+  // components: {
+  //   cartLive
+  // },
+
   methods: {
-    addToCart() {}
+    addToCart: function(event) {
+      alert("test");
+      if (event) {
+        console.log("productkopen");
+        this.$emit("test");
+      }
+    }
   }
 };
 </script>

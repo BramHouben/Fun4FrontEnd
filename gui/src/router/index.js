@@ -11,8 +11,7 @@ var options = {
   persist: true
 };
 
-const routes = [
-  {
+const routes = [{
     path: "/products",
     name: "Products",
     component: productPage
@@ -21,7 +20,12 @@ const routes = [
     path: "/about",
     name: "About",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import( /* webpackChunkName: "about" */ "../views/About.vue")
+  }, {
+    path: "/register",
+    name: "register",
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/Registerpage.vue")
   }
 ];
 
