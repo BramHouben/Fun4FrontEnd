@@ -4,7 +4,7 @@
       <v-btn color="primary" dark v-on="on">Winkelmand</v-btn>
     </template>
     <v-card>
-      <v-card-title>test</v-card-title>
+      <v-card-title>Winkelwagen</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;"></v-card-text>
       <li v-for="(item, index) in productlist" v-bind:key="index">
@@ -21,6 +21,7 @@
 <script>
 export default {
   name: "cartLive",
+  productlist: [],
   // props: ["productlist"],
   data() {
     return {
@@ -28,6 +29,11 @@ export default {
       drawer: true,
       productlist: ["test1", "test2"]
     };
+  },
+  methods: {
+    addProduct() {
+      this.productlist.push({ product: this.newProduct });
+    }
   }
 };
 </script>
