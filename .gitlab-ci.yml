@@ -1,19 +1,19 @@
-stages:
-  - build
-  - test
-
-build:
+build_site:
+  tags:
+    - ci
+  image: node:latest
   stage: build
   script:
-    - echo "Building"
-    - mkdir build
-    - touch build/info.txt
+    - npm install --progress=false
+    - npm run build
   artifacts:
+    expire_in: 1 week
     paths:
-      - build/
+      - dist
 
-test:
+unit test:
+  image: node:latest
   stage: test
   script:
-    - echo "Testing"
-    - test -f "build/info.txt"
+    - npm install --progress=false
+    - npm run test:unit
