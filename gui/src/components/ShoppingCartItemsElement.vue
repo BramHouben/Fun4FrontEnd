@@ -31,7 +31,8 @@ export default {
   },
   methods: {
     BuyItems() {
-      alert("Kopen moet nog gebeuren");
+      this.$store.dispatch("BuyProducts");
+      // alert("Kopen moet nog gebeuren");
       this.dialog = false;
     }
   },

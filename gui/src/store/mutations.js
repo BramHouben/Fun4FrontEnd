@@ -7,3 +7,7 @@ export const ADD_PRODUCT = (state, {
         aantal
     });
 }
+
+export const BUY_PRODUCT = state => {
+    state.products = [];
+}
