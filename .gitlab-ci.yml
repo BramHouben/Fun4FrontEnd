@@ -9,7 +9,7 @@ build site:
       paths:
         - dist
   
-  unit test:
+ unit test:
     image: node:latest
     stage: test
     script:
