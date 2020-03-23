@@ -1,9 +1,9 @@
 import {
   shallowMount
 } from '@vue/test-utils'
-import Navbar from '@/components/MainPage.vue'
+import Navbar from '@/components/Navbar.vue'
 
-describe('MainPage.vue', () => {
+describe('Navbar.vue', () => {
   it('renders props.msg when passed', () => {
     const msg = 'new message'
     const wrapper = shallowMount(Navbar, {
