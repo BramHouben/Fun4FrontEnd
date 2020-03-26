@@ -12,6 +12,8 @@ build_site:
       - dist
 
 unit test:
+  tags:
+    - ci
   image: node:latest
   stage: test
   script:
