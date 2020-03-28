@@ -14,6 +14,7 @@
       <v-card-actions>
         <v-btn color="blue darken-1" text @click="BuyItems()">Kopen</v-btn>
       </v-card-actions>
+      <p>{{TotalCartSum}}</p>
     </v-card>
   </v-dialog>
 </template>
@@ -37,6 +38,16 @@ export default {
     }
   },
   computed: {
+    TotalCartSum: function() {
+      var sum = 0;
+
+      this.products.forEach(e => {
+        //     console.log(e.product.price);
+        sum += e.product.price;
+      });
+      return sum;
+    },
+
     products() {
       return this.$store.state.products;
     }
