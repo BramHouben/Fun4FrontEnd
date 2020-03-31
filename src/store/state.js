@@ -2,5 +2,5 @@ export default {
 
     products: [],
 
-
+    productsLoaded: []
 }

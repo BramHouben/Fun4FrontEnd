@@ -25,15 +25,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 // import cartLive from "@/components/ShoppingCartItemsElement";
 export default {
   name: "Products",
   props: ["products"],
-
+  mounted() {
+    this.$store.dispatch("loadProducts");
+  },
   // components: {
   //   cartLive
   // },
-
+  computed: {
+    ...mapState(["posts"])
+  },
   methods: {
     addToCart: function(product) {
       // alert("test " + this.newproduct);
