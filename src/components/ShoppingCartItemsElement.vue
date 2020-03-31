@@ -8,13 +8,21 @@
       <v-divider></v-divider>
       <v-card-text style="height: 300px;"></v-card-text>
       <li v-for="product in products" v-bind:key="product.product.id">
-        {{ product.product.id+" "+product.product.name+" "+ product.product.price +" Aantal "+ product.aantal }}
+        {{
+          product.product.id +
+            " " +
+            product.product.name +
+            " " +
+            product.product.price +
+            " Aantal " +
+            product.aantal
+        }}
         <v-divider></v-divider>
       </li>
       <v-card-actions>
         <v-btn color="blue darken-1" text @click="BuyItems()">Kopen</v-btn>
       </v-card-actions>
-      <p>{{TotalCartSum}}</p>
+      <p>{{ TotalCartSum }}</p>
     </v-card>
   </v-dialog>
 </template>

@@ -4,7 +4,12 @@
     <v-row align="center">
       <v-row justify="space-around">
         <v-form ref="form" v-model="valid">
-          <v-text-field v-model="email" :rules="emailRegels" label="E-mail" required></v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRegels"
+            label="E-mail"
+            required
+          ></v-text-field>
 
           <v-text-field
             type="password"
@@ -24,12 +29,20 @@
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
-              <v-text-field v-model="date" label="Geboortedatum" readonly v-on="on" required></v-text-field>
+              <v-text-field
+                v-model="date"
+                label="Geboortedatum"
+                readonly
+                v-on="on"
+                required
+              ></v-text-field>
             </template>
             <v-date-picker v-model="date" no-title scrollable>
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              <v-btn text color="primary" @click="$refs.menu.save(date)"
+                >OK</v-btn
+              >
             </v-date-picker>
           </v-menu>
 
@@ -41,14 +54,20 @@
             :rules="checkboxRegels"
           ></v-checkbox>
 
-          <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Registreren</v-btn>
+          <v-btn
+            :disabled="!valid"
+            color="success"
+            class="mr-4"
+            @click="validate"
+            >Registreren</v-btn
+          >
         </v-form>
       </v-row>
     </v-row>
   </v-content>
 </template>
- 
- <script>
+
+<script>
 export default {
   data: () => ({
     valid: true,
