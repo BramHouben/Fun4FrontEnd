@@ -15,15 +15,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* .footerPrimary {
-  background: #42b983;
-  padding: 6px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  display: inline-block;
-  color: white;
-} */
-</style>
+<style scoped></style>
