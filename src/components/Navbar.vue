@@ -2,7 +2,7 @@
   <nav>
     <v-app-bar color="white" dense white app>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>Bal.com</v-toolbar-title>
+      <v-toolbar-title>Bal</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-btn class="ma-2" outlined color="primary" to="/products">Products</v-btn>
