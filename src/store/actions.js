@@ -20,8 +20,9 @@ export const BuyProducts = ({
 export const loadProducts = ({
     commit
 }) => {
-    Axios.get("https://jsonplaceholder.typicode.com/todos")
+    Axios.get("http://localhost:8075/api/v1/user")
         .then(data => {
+            console.log("Producten vanuit rest worden geladen");
             console.log(data.data);
             let posts = data.data;
             commit("SET_PRODUCTS", posts);

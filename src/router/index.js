@@ -31,6 +31,11 @@ const routes = [{
     name: "Login",
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/LoginPage.vue")
+  }, {
+    path: "/crud",
+    name: "Crud",
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/CrudPage.vue")
   }
 ];
 
