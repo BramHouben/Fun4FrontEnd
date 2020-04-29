@@ -2,5 +2,8 @@ export default {
 
     products: [],
 
-    productsLoaded: []
+    productsLoaded: [],
+
+    register: false
+
 }

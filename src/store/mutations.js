@@ -14,3 +14,7 @@ export const BUY_PRODUCT = state => {
 export const SET_PRODUCTS = (state, posts) => {
     state.productsLoaded = posts;
 }
+
+export const REGISTERUSER = state => {
+    state.register = true;
+}

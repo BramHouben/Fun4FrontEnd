@@ -1,33 +1,51 @@
 import Axios from "axios";
 
 export const addProduct = ({
-    commit
+  commit
 }, {
-    product,
-    aantal
+  product,
+  aantal
 }) => {
-    commit("ADD_PRODUCT", {
-        product,
-        aantal
-    });
+  commit("ADD_PRODUCT", {
+    product,
+    aantal,
+  });
 };
 export const BuyProducts = ({
-    commit
+  commit
 }) => {
-    commit("BUY_PRODUCT");
+  commit("BUY_PRODUCT");
 };
 
 export const loadProducts = ({
-    commit
+  commit
 }) => {
-    Axios.get("http://localhost:8075/api/v1/user")
-        .then(data => {
-            console.log("Producten vanuit rest worden geladen");
-            console.log(data.data);
-            let posts = data.data;
-            commit("SET_PRODUCTS", posts);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+  Axios.get("http://localhost:8095/api/v1/product")
+    .then((data) => {
+      console.log("Producten vanuit rest worden geladen");
+      console.log(data.data);
+      let posts = data.data;
+      commit("SET_PRODUCTS", posts);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => console.log("Data loaded"));
+};
+
+export const registerUser = ({
+  commit
+}, {
+  email,
+  password
+}) => {
+  commit(
+    "REGISTERUSER"
+  );
+  console.log("inserting")
+  Axios.post("http://localhost:8095/api/v1/user", {
+    name: email,
+    password: password
+  })
+
 };
