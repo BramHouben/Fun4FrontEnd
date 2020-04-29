@@ -43,9 +43,11 @@ export const registerUser = ({
     "REGISTERUSER"
   );
   console.log("inserting")
-  Axios.post("http://localhost:8095/api/v1/user", {
+  Axios.post("http://localhost:8095/user/insertuser", {
     name: email,
     password: password
-  })
+  }).catch((error) => {
+    console.log(error);
+  }).finally(() => console.log("user inserted!"))
 
 };

@@ -69,11 +69,13 @@ export default {
 
   methods: {
     validate() {
-      this.$refs.form.validate();
-      this.$store.dispatch("registerUser", {
-        email: this.email,
-        password: this.password
-      });
+      if (this.$refs.form.validate()) {
+        this.$store.dispatch("registerUser", {
+          email: this.email,
+          password: this.password
+        });
+        this.$router.push("/crud");
+      }
     }
   }
 };
