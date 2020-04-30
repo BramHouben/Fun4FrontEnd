@@ -9,13 +9,13 @@
       <v-card-text style="height: 300px;"></v-card-text>
       <li v-for="product in products" v-bind:key="product.product.id">
         {{
-          product.product.id +
-            " " +
-            product.product.name +
-            " " +
-            product.product.price +
-            " Aantal " +
-            product.aantal
+        product.product.id +
+        " " +
+        product.product.name +
+        " " +
+        product.product.price +
+        " Aantal " +
+        product.aantal
         }}
         <v-divider></v-divider>
       </li>
@@ -48,7 +48,6 @@ export default {
   computed: {
     TotalCartSum: function() {
       var sum = 0;
-
       this.products.forEach(e => {
         //     console.log(e.product.price);
         sum += e.product.price;
