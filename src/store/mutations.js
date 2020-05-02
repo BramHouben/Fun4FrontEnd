@@ -18,3 +18,8 @@ export const SET_PRODUCTS = (state, posts) => {
 export const REGISTERUSER = state => {
     state.register = true;
 }
+
+export const REMOVEPRODUCT = (state, id) => {
+    let products = state.productsLoaded.filter(p => p.id != id)
+    state.productsLoaded = products;
+}

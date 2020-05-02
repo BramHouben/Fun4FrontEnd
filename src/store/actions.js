@@ -17,10 +17,26 @@ export const BuyProducts = ({
   commit("BUY_PRODUCT");
 };
 
+export const removeProduct = ({
+  commit
+}, {
+  product_id: product_id
+}) => {
+  commit(
+    "REMOVEPRODUCT", product_id
+  );
+  console.log("removing....")
+  console.log(product_id);
+  Axios.delete("http://localhost:8095/product/delete/" + product_id).catch((error) => {
+    console.log(error);
+  }).finally(() => console.log("Product remover!"))
+
+};
+
 export const loadProducts = ({
   commit
 }) => {
-  Axios.get("http://localhost:8095/api/v1/product")
+  Axios.get("http://localhost:8095/product/getProducts")
     .then((data) => {
       console.log("Producten vanuit rest worden geladen");
       console.log(data.data);
