@@ -1,20 +1,45 @@
 <template>
   <v-content>
     <h1>Crud</h1>
-    <ul>
-      <li v-for="product in renderProducts" v-bind:key="product.id">
-        {{
-        product.id + " "+ product.productName + " "+ product.productPrice
-        }}
-        <!-- <v-btn class="ma-2" outlined color="primary" v-on:click="changeProduct()"> -->
+
+    <div class="flex-table">
+      <div>ID</div>
+      <div>Name</div>
+      <div>Price</div>
+      <div>Change</div>
+      <div>Delete</div>
+    </div>
+
+    <div v-for="product in renderProducts" v-bind:key="product.id" class="flex-table">
+      <div>{{product.id}}</div>
+      <div>{{product.productName}}</div>
+      <div>{{product.productPrice}}</div>
+      <div>
         <CrudChange></CrudChange>
-        <!-- </v-btn> -->
+      </div>
+
+      <div>
         <v-btn class="ma-2" color="error" v-on:click="deleteProduct(product)">Delete</v-btn>
-      </li>
-    </ul>
+      </div>
+    </div>
+
     <v-spacer></v-spacer>
     <h2>product toevoegen</h2>
     <v-btn color="success" class="mr-4" v-on:click="addProduct()">Add Product</v-btn>
+    <!-- <v-text-field
+      v-model="search"
+      append-icon="mdi-magnify"
+      label="Search"
+      single-line
+      hide-details
+    ></v-text-field>
+    <v-data-table
+      :headers="headers"
+      :items="renderProducts"
+      :items-per-page="50"
+      :search="search"
+      class="elevation-1"
+    ></v-data-table>-->
   </v-content>
 </template>
 
@@ -28,6 +53,11 @@ export default {
   components: {
     CrudChange
   },
+  // data() {
+  //   return {
+  //     search: ""
+  //   };
+  // },
   mounted() {
     console.log("loaded test");
     this.$store.dispatch("loadProducts");
@@ -39,6 +69,13 @@ export default {
     renderProducts() {
       return this.$store.state.productsLoaded;
     }
+    // headers() {
+    //   return [
+    //     { text: "id", value: "id" },
+    //     { text: "name", value: "productName" },
+    //     { text: "price", value: "productPrice" }
+    //   ];
+    // }
   },
 
   methods: {
@@ -59,3 +96,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.flex-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20%);
+}
+</style>
