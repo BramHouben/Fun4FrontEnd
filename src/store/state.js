@@ -4,6 +4,7 @@ export default {
 
     productsLoaded: [],
 
-    register: false
+    register: false,
 
+    lastProductAdded: ""
 }

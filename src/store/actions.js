@@ -22,15 +22,34 @@ export const removeProduct = ({
 }, {
   product_id: product_id
 }) => {
-  commit(
-    "REMOVEPRODUCT", product_id
-  );
-  console.log("removing....")
+  commit("REMOVEPRODUCT", product_id);
+  console.log("removing....");
   console.log(product_id);
-  Axios.delete("http://localhost:8095/product/delete/" + product_id).catch((error) => {
-    console.log(error);
-  }).finally(() => console.log("Product remover!"))
+  Axios.delete("http://localhost:8095/product/delete/" + product_id)
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => console.log("Product remover!"));
+};
 
+export const addProductToStore = ({
+  commit
+}, {
+  product_name,
+  product_price
+}) => {
+  commit("ADDPRODUCTTOSTORE", product_name);
+  console.log("adding to store....");
+  console.log(product_name);
+  console.log(product_price);
+  Axios.post("http://localhost:8095/product/insertproduct/", {
+      productName: product_name,
+      productPrice: product_price,
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => console.log("Product remover!"));
 };
 
 export const loadProducts = ({
@@ -55,15 +74,14 @@ export const registerUser = ({
   email,
   password
 }) => {
-  commit(
-    "REGISTERUSER"
-  );
-  console.log("inserting")
+  commit("REGISTERUSER");
+  console.log("inserting");
   Axios.post("http://localhost:8095/user/insertuser", {
-    name: email,
-    password: password
-  }).catch((error) => {
-    console.log(error);
-  }).finally(() => console.log("user inserted!"))
-
+      name: email,
+      password: password,
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => console.log("user inserted!"));
 };

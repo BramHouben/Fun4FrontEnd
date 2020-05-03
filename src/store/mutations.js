@@ -23,3 +23,9 @@ export const REMOVEPRODUCT = (state, id) => {
     let products = state.productsLoaded.filter(p => p.id != id)
     state.productsLoaded = products;
 }
+
+export const ADDPRODUCTTOSTORE = (state, name) => {
+    // let products = state.productsLoaded.puh(p => p.productName != name)
+    // state.productsLoaded = products;
+    state.lastProductAdded = name;
+}

@@ -15,7 +15,7 @@
       <div>{{product.productName}}</div>
       <div>{{product.productPrice}}</div>
       <div>
-        <CrudChange></CrudChange>
+        <CrudChange :product="product"></CrudChange>
       </div>
 
       <div>
@@ -25,7 +25,17 @@
 
     <v-spacer></v-spacer>
     <h2>product toevoegen</h2>
-    <v-btn color="success" class="mr-4" v-on:click="addProduct()">Add Product</v-btn>
+    <v-col cols="12" sm="6">
+      <v-text-field v-model="productname" label="name"></v-text-field>
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-text-field v-model="productprice" label="number" type="number"></v-text-field>
+    </v-col>
+    <v-btn
+      color="success"
+      class="mr-4"
+      v-on:click="addProduct(productname,productprice)"
+    >Add Product</v-btn>
     <!-- <v-text-field
       v-model="search"
       append-icon="mdi-magnify"
@@ -50,14 +60,17 @@ import CrudChange from "@/components/CrudDialog";
 export default {
   name: "crud",
   props: ["products"],
+
   components: {
     CrudChange
   },
-  // data() {
-  //   return {
-  //     search: ""
-  //   };
-  // },
+  data() {
+    return {
+      // search: ""
+      productname: "",
+      productprice: ""
+    };
+  },
   mounted() {
     console.log("loaded test");
     this.$store.dispatch("loadProducts");
@@ -88,11 +101,16 @@ export default {
         product_id: product.id
       });
       // window.location.reload();
+    },
+    addProduct(productname, productprice) {
+      console.log(productname);
+      console.log(productprice);
+      this.$store.dispatch("addProductToStore", {
+        product_name: productname,
+        product_price: productprice
+      });
+      window.location.reload();
     }
-    // deleteProduct() {
-    //   console.log(this.product.id);
-    //   // this.$store.dispatch("removeProduct", this.product.id);
-    // }
   }
 };
 </script>
