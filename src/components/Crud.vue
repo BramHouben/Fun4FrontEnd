@@ -109,7 +109,7 @@ export default {
         product_name: productname,
         product_price: productprice
       });
-      window.location.reload();
+      // window.location.reload();
     }
   }
 };

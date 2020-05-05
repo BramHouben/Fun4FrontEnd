@@ -85,3 +85,12 @@ export const registerUser = ({
     })
     .finally(() => console.log("user inserted!"));
 };
+
+
+export const loginUser = async ({
+  commit
+}) => {
+  let response = await Axios.get("loginuser");
+  let user = response.data.data;
+  commit("SETUSER", user);
+}

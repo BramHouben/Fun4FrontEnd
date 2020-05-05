@@ -1,5 +1,8 @@
 export default {
 
+    currenUser: null,
+
+
     products: [],
 
     productsLoaded: [],

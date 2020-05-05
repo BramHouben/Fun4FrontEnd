@@ -29,3 +29,7 @@ export const ADDPRODUCTTOSTORE = (state, name) => {
     // state.productsLoaded = products;
     state.lastProductAdded = name;
 }
+
+export const SETUSER = (state, user) => {
+    state.currenUser = user;
+}
