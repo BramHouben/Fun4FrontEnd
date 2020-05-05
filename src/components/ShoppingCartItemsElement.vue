@@ -11,9 +11,9 @@
         {{
         product.product.id +
         " " +
-        product.product.name +
+        product.product.productName +
         " " +
-        product.product.price +
+        product.product.productPrice +
         " Aantal " +
         product.aantal
         }}
