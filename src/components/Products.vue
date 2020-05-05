@@ -24,16 +24,19 @@
 
 <script>
 import { mapState } from "vuex";
-// import cartLive from "@/components/ShoppingCartItemsElement";
 export default {
   name: "Products",
+
+  // data() {
+  //   return {
+  //     productList: []
+  //   };
+  // },
 
   mounted() {
     this.$store.dispatch("loadProducts");
   },
-  // components: {
-  //   cartLive
-  // },
+
   computed: {
     ...mapState(["posts"]),
     productsloaded() {

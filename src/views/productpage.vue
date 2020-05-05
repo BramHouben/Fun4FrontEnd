@@ -10,7 +10,6 @@ import Products from "@/components/Products";
 
 export default {
   name: "productPage",
-  props: ["productsLoaded"],
   components: {
     Products
   }
