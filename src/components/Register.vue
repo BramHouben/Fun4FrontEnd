@@ -51,6 +51,8 @@
 <script>
 export default {
   data: () => ({
+    email: "",
+    password: "",
     valid: true,
     date: new Date().toISOString().substr(0, 10),
     menu: false,

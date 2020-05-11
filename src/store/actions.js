@@ -89,8 +89,24 @@ export const registerUser = ({
 
 export const loginUser = async ({
   commit
+}, {
+  email,
+  password
 }) => {
-  let response = await Axios.get("loginuser");
-  let user = response.data.data;
-  commit("SETUSER", user);
+
+  await Axios.post("http://localhost:8095/user/login", {
+    name: email,
+    password: password
+  }).then(result => {
+    console.log("succes", result),
+      commit("SETUSER", result);
+  }).catch((error) => {
+    console.log(error);
+  }).finally(
+    console.log("zitten in finally"),
+
+  );
+
+
+
 }
