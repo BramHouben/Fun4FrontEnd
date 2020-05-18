@@ -30,7 +30,6 @@
 <script>
 export default {
   name: "cartLive",
-
   props: ["productlist"],
   data() {
     return {
@@ -50,7 +49,7 @@ export default {
       var sum = 0;
       this.products.forEach(e => {
         //     console.log(e.product.price);
-        sum += e.product.price;
+        sum += e.product.productPrice;
       });
       return sum;
     },

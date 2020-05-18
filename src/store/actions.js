@@ -49,7 +49,7 @@ export const addProductToStore = ({
     .catch((error) => {
       console.log(error);
     })
-    .finally(() => console.log("Product remover!"));
+    .finally(() => console.log("Product added!"));
 };
 
 export const loadProducts = ({
