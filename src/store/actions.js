@@ -101,11 +101,8 @@ export const loginUser = async ({
     withCredentials: true
   }).then(result => {
     console.log("succes", result),
-
-      console.log(result.headers['authorization']);
-
-
-    commit("SETUSER", result);
+      // console.log(result.headers['authorization']);
+      commit("SETUSER", result);
   }).catch((error) => {
     console.log(error);
   }).finally(
