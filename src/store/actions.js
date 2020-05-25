@@ -94,12 +94,18 @@ export const loginUser = async ({
   password
 }) => {
 
-  await Axios.post("http://localhost:8095/user/login", {
-    name: email,
-    password: password
+  await Axios.post("http://localhost:8095/login", {
+    username: email,
+    password: password,
+  }, {
+    withCredentials: true
   }).then(result => {
     console.log("succes", result),
-      commit("SETUSER", result);
+
+      console.log(result.headers['authorization']);
+
+
+    commit("SETUSER", result);
   }).catch((error) => {
     console.log(error);
   }).finally(
