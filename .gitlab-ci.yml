@@ -20,6 +20,8 @@ unit test:
     - npm install --progress=false
     - npm run test:unit
 pages:
+  tags:
+    - ci
   image: node:latest
   stage: deploy
   script:
