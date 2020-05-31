@@ -27,7 +27,7 @@ pages:
   script:
     - npm install --progress=false
     - npm run build
-    # - rm -rf public
+    - rm public
     - mkdir public
     - cp -r dist/* public
   artifacts:
