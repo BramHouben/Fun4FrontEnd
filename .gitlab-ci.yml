@@ -6,10 +6,10 @@ build_site:
   script:
     - npm install --progress=false
     - npm run build
-  artifacts:
-    expire_in: 1 week
-    paths:
-      - dist
+#   artifacts:
+#     expire_in: 1 week
+#     paths:
+#       - dist
 
 unit test:
   tags:
@@ -19,3 +19,18 @@ unit test:
   script:
     - npm install --progress=false
     - npm run test:unit
+pages:
+  image: node:latest
+  stage: deploy
+  script:
+    - npm install --progress=false
+    - npm run build
+    - rm -rf public
+    - mkdir public
+    - cp -r dist/* public
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - public
+  only:
+    - master
