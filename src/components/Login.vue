@@ -4,26 +4,9 @@
     <v-row align="center">
       <v-row justify="space-around">
         <v-form ref="form" v-model="valid">
-          <v-text-field
-            v-model="email"
-            :rules="emailRegels"
-            label="E-mail"
-            required
-          ></v-text-field>
-          <v-text-field
-            type="password"
-            v-model="password"
-            label="Wachtwoord"
-            required
-          ></v-text-field>
-          <!-- <v-alert type="success">{{currentuserget}}</v-alert> -->
-          <v-btn
-            :disabled="!valid"
-            color="primary"
-            class="mr-4"
-            @click="validate"
-            >Inloggen</v-btn
-          >
+          <v-text-field v-model="email" :rules="emailRegels" label="E-mail" required></v-text-field>
+          <v-text-field type="password" v-model="password" label="Wachtwoord" required></v-text-field>
+          <v-btn :disabled="!valid" color="primary" class="mr-4" @click="validate">Inloggen</v-btn>
         </v-form>
       </v-row>
     </v-row>
@@ -38,29 +21,46 @@ export default {
     emailRegels: [
       // v => !!v || "E-mail is verplicht",
       // v => /.+@.+\..+/.test(v) || "Email moet echt zijn"
-    ],
+    ]
   }),
 
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
-        console.log(this.email);
-        console.log(this.password);
-        this.$store.dispatch("loginUser", {
-          email: this.email,
-          password: this.password,
-        });
-        this.$router.push("/about");
+        // console.log(this.email);
+        // console.log(this.password);
+        this.Setuser();
+
+        //this.setName();
+        // console.log(this.$store.state.userloggedin);
+
+        // }
       }
     },
+    async Setuser() {
+      await this.$store.dispatch("loginUser", {
+        email: this.email,
+        password: this.password
+      });
+
+      if (this.$store.state.userloggedin == true) {
+        await this.$store.dispatch("getUsername");
+        this.$router.push("/about");
+      }
+    }
+    // async setName() {
+    //   this.$store.dispatch("getUsername");
+    // }
   },
+
+  mounted() {
+    this.$store.state.currenUser = "";
+  },
+
   computed: {
-    //return console.log("test");
     currentuserget() {
       return this.$store.state.currenUser;
-    },
-
-    //return this.$store.state.username;
-  },
+    }
+  }
 };
 </script>

@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 
 // module.exports = {
 //   publicPath: process.env.NODE_ENV === 'production' ?
-//     '/<funs4frontend>/' :
+//     '/funs4frontend/' :
 //     '/'
 // }
 

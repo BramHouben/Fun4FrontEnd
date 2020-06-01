@@ -1,6 +1,6 @@
 export default {
 
-    currenUser: null,
+    currenUser: "",
 
 
     products: [],
@@ -9,5 +9,7 @@ export default {
 
     register: false,
 
-    lastProductAdded: ""
+    lastProductAdded: "",
+
+    userloggedin: false
 }
