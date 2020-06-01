@@ -25,7 +25,9 @@ export const removeProduct = ({
   commit("REMOVEPRODUCT", product_id);
   console.log("removing....");
   console.log(product_id);
-  Axios.delete("http://localhost:8095/product/delete/" + product_id)
+  Axios.delete("http://localhost:8095/product/delete/" + product_id, {
+      withCredentials: true
+    })
     .catch((error) => {
       console.log(error);
     })

@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      username: this.$store.state.currenUser
+      username: this.$store.state.currentUser
     };
   },
   // created() {

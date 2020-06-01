@@ -11,32 +11,16 @@
       <v-spacer></v-spacer>
       <cartLive></cartLive>
       <v-spacer></v-spacer>
+      <v-btn
+        class="ma-2"
+        outlined
+        color="primary"
+        v-if="getusername()"
+        to="/userdetails"
+      >{{username}}</v-btn>
       <v-btn class="ma-2" outlined color="primary" to="/login">Login</v-btn>
       <v-btn class="ma-2" outlined color="primary" to="/register">Register</v-btn>
     </v-app-bar>
-
-    <!-- <v-navigation-drawer v-model="drawer" absolute temporary app>
-      <v-list nav dense app>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        >
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>-->
   </nav>
 </template>
 
@@ -47,12 +31,44 @@ export default {
   name: "NavbarComponent",
   components: {
     cartLive
+  },
+  data() {
+    return {
+      isLoggedIn: this.$store.state.userloggedin,
+      username: this.$store.state.currentUser
+    };
+  },
+
+  // created() {
+  //   // if (this.isLoggedIn != null) {
+  //   // }
+
+  //   console.log(this.isLoggedIn);
+  //   console.log(this.username);
+  // },
+  methods: {
+    getusername() {
+      if (this.username != "") {
+        console.log("is true");
+
+        return true;
+      } else {
+        console.log("is false");
+        return false;
+      }
+    }
   }
-  // data() {
-  //   return {
-  //     dialog: false,
-  //     drawer: true
-  //   };
+  // computed: {
+  //   checkuser() {
+  //     if (this.username != "") {
+  //       console.log("is true");
+
+  //       return true;
+  //     } else {
+  //       console.log("is false");
+  //       return false;
+  //     }
+  //   }
   // }
 };
 </script>

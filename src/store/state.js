@@ -1,6 +1,6 @@
 export default {
 
-    currenUser: "",
+    currentUser: "",
 
 
     products: [],

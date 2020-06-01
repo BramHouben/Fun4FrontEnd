@@ -31,7 +31,7 @@ export const ADDPRODUCTTOSTORE = (state, name) => {
 }
 
 export const SETUSER = (state, user) => {
-    state.currenUser = user;
+    state.currentUser = user;
 
 }
 
