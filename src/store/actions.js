@@ -141,3 +141,15 @@ export const getUsername = async ({
     //return result.data;
   })
 };
+
+export const checkAdminRights = async ({
+  commit
+}) => {
+  //console.log("Check admin rechten");
+  await Axios.get("http://localhost:8095/user/isAdmin", {
+    withCredentials: true,
+  }).then((result) => {
+    // console.log(result.data);
+    commit("ISADMIN", result.data);
+  })
+}

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import productPage from "@/views/productpage";
 import VueSession from "vue-session";
 // import App from '../views/App.vue'
+import store from '../store/index.js'
 
 Vue.use(VueRouter);
 Vue.use(VueSession, options);
@@ -34,6 +35,7 @@ const routes = [{
   }, {
     path: "/crud",
     name: "Crud",
+    beforeEnter: isAdmin,
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/CrudPage.vue")
   }, {
@@ -41,6 +43,10 @@ const routes = [{
     name: "Orders",
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/OrdersPage.vue")
+  }, {
+    path: "/forbidden",
+    name: "Forbidden",
+    component: () => import("../components/Forbidden.vue")
   }
 ];
 
@@ -49,5 +55,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+async function isAdmin(to, from, next) {
+  await store.dispatch("checkAdminRights");
+
+  if (!store.getters.isAdmin) {
+    next('/forbidden')
+  } else {
+    next()
+  }
+}
+
 
 export default router;

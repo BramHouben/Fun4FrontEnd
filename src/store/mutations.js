@@ -38,3 +38,7 @@ export const SETUSER = (state, user) => {
 export const USERLOGGEDIN = state => {
     state.userloggedin = true;
 }
+
+export const ISADMIN = (state, value) => {
+    state.isAdmin = value;
+}

@@ -11,5 +11,7 @@ export default {
 
     lastProductAdded: "",
 
-    userloggedin: false
+    userloggedin: false,
+
+    isAdmin: false
 }
