@@ -102,14 +102,15 @@ export default {
       });
       // window.location.reload();
     },
-    addProduct(productname, productprice) {
+    async addProduct(productname, productprice) {
       console.log(productname);
       console.log(productprice);
-      this.$store.dispatch("addProductToStore", {
+      await this.$store.dispatch("addProductToStore", {
         product_name: productname,
         product_price: productprice
       });
-      // window.location.reload();
+      this.productname = "";
+      this.productprice = "";
     }
   }
 };

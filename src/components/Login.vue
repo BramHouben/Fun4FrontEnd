@@ -45,6 +45,8 @@ export default {
 
       if (this.$store.state.userloggedin == true) {
         await this.$store.dispatch("getUsername");
+        await this.$store.dispatch("checkAdminRights");
+
         this.$router.push("/about");
       }
     }

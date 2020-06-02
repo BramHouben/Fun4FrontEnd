@@ -25,7 +25,7 @@ export const REMOVEPRODUCT = (state, id) => {
 }
 
 export const ADDPRODUCTTOSTORE = (state, name) => {
-    // let products = state.productsLoaded.puh(p => p.productName != name)
+    // let products = state.productsLoaded.push(p => p.productName != name)
     // state.productsLoaded = products;
     state.lastProductAdded = name;
 }
@@ -41,4 +41,8 @@ export const USERLOGGEDIN = state => {
 
 export const ISADMIN = (state, value) => {
     state.isAdmin = value;
+    state.userLayout = value;
 }
+// export const ISLAYOUT = state => {
+//     state.userLayout = false;
+// }

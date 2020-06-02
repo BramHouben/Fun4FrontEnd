@@ -13,5 +13,7 @@ export default {
 
     userloggedin: false,
 
-    isAdmin: false
+    isAdmin: false,
+
+    userLayout: false
 }

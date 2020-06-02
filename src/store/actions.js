@@ -151,5 +151,6 @@ export const checkAdminRights = async ({
   }).then((result) => {
     // console.log(result.data);
     commit("ISADMIN", result.data);
+
   })
 }

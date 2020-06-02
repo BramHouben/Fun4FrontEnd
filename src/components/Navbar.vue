@@ -5,11 +5,11 @@
       <v-toolbar-title>Bal</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn class="ma-2" outlined color="primary" to="/products">Products</v-btn>
-      <v-btn class="ma-2" outlined color="primary" to="/crud">Crud</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="!userLayout" to="/products">Products</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="userLayout" to="/crud">Crud</v-btn>
       <v-btn class="ma-2" outlined color="primary" to="/about">About</v-btn>
       <v-spacer></v-spacer>
-      <cartLive></cartLive>
+      <cartLive v-if="!userLayout"></cartLive>
       <v-spacer></v-spacer>
       <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/userdetails">{{username}}</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/login">Login</v-btn>
@@ -30,7 +30,8 @@ export default {
   data() {
     return {
       isLoggedIn: this.$store.state.userloggedin,
-      username: this.$store.state.currentUser
+      username: this.$store.state.currentUser,
+      userLayout: this.$store.state.userLayout
     };
   },
 
