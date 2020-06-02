@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-app-bar color="white" dense white app>
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
       <v-toolbar-title>Bal</v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -11,15 +11,10 @@
       <v-spacer></v-spacer>
       <cartLive></cartLive>
       <v-spacer></v-spacer>
-      <v-btn
-        class="ma-2"
-        outlined
-        color="primary"
-        v-if="getusername()"
-        to="/userdetails"
-      >{{username}}</v-btn>
-      <v-btn class="ma-2" outlined color="primary" to="/login">Login</v-btn>
-      <v-btn class="ma-2" outlined color="primary" to="/register">Register</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/userdetails">{{username}}</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/login">Login</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/register">Register</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/login">Logout</v-btn>
     </v-app-bar>
   </nav>
 </template>
@@ -48,15 +43,16 @@ export default {
   // },
   methods: {
     getusername() {
-      if (this.username != "") {
-        console.log("is true");
-
-        return true;
-      } else {
-        console.log("is false");
-        return false;
-      }
+      return this.username;
     }
+  },
+
+  mounted: function() {
+    return this.getusername();
+  },
+
+  updated() {
+    return this.getusername();
   }
   // computed: {
   //   checkuser() {
