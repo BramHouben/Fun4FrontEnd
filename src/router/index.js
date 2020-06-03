@@ -52,8 +52,9 @@ const routes = [{
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
-  routes
+  // base: process.env.BASE_URL,
+  // routes
+  routes: routes
 });
 
 async function isAdmin(to, from, next) {
