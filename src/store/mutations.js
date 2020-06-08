@@ -46,3 +46,7 @@ export const ISADMIN = (state, value) => {
 // export const ISLAYOUT = state => {
 //     state.userLayout = false;
 // }
+
+export const CHECKOUT = status => {
+    status.products = [];
+}
