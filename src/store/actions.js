@@ -1,4 +1,5 @@
 import Axios from "axios";
+import store from ".";
 
 export const addProduct = ({
   commit
@@ -153,4 +154,43 @@ export const checkAdminRights = async ({
     commit("ISADMIN", result.data);
 
   })
+}
+export const checkout = async ({
+  commit
+}) => {
+  let productsloaded = store.state.products;
+  var productFinal = [];
+  console.log(productsloaded);
+  // var test = productsloaded[0];
+  //const test2 = [test.product];
+  console.log(productsloaded.lenght)
+  productsloaded.forEach(product => {
+    //console.log(product.product);
+    productFinal.push(product.product)
+    console.log(productFinal)
+  });
+  // let payload = {
+  //   products: [
+  //     test2
+  //   ]
+  // }
+
+  // console.log(productsloaded);
+  // var test = productsloaded[0];
+  // var test2 = test.product;
+  // console.log(test2);
+  await Axios.post("http://localhost:8095/order/sendOrder", {
+
+      products: productFinal,
+
+    }, {
+      withCredentials: true
+    }).then((result) => {
+      console.log(result);
+      commit("checkout")
+    })
+
+    .catch((error) => {
+      console.log(error);
+    })
 }

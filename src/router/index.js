@@ -47,6 +47,11 @@ const routes = [{
     path: "/forbidden",
     name: "Forbidden",
     component: () => import("../components/Forbidden.vue")
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: () => import("../components/CheckOut.vue")
   }
 ];
 
