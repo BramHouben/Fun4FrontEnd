@@ -161,12 +161,14 @@ export const checkout = async ({
   let productsloaded = store.state.products;
   var productFinal = [];
 
-  //todo fix voor nu met aantal
+
   productsloaded.forEach(product => {
-
-    productFinal.push(product.product);
-
+    //aantal erbij
+    var element = product.product;
+    element.count = product.aantal;
+    productFinal.push(element);
   });
+
 
   await Axios.post("http://localhost:8095/order/sendOrder", {
 
