@@ -43,14 +43,14 @@ export default {
     }
   },
   methods: {
-    addToCart: function(product) {
+    addToCart: function(newproduct) {
       // alert("test " + this.newproduct);
 
       if (event) {
         // alert(product.name);
-        alert(product);
+
         this.$store.dispatch("addProduct", {
-          product: product,
+          product: newproduct,
           aantal: 1
         });
       }

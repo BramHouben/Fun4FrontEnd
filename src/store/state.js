@@ -15,5 +15,9 @@ export default {
 
     isAdmin: false,
 
-    userLayout: false
+    userLayout: false,
+
+    productsOrder: false,
+
+    ordersLoaded: []
 }

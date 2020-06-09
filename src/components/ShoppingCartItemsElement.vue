@@ -49,7 +49,9 @@ export default {
       var sum = 0;
       this.products.forEach(e => {
         //     console.log(e.product.price);
-        sum += e.product.productPrice;
+        var ttOneProduct = e.aantal * e.product.productPrice;
+
+        sum += ttOneProduct;
       });
       return sum;
     },

@@ -12,7 +12,7 @@
       <cartLive v-if="!userLayout"></cartLive>
       <v-btn class="ma-2" outlined color="primary" to="/Checkout">Order</v-btn>
       <v-spacer></v-spacer>
-      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/userdetails">{{username}}</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/account">{{username}}</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/login">Login</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/register">Register</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/login">Logout</v-btn>

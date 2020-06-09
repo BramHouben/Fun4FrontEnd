@@ -183,3 +183,14 @@ export const checkout = async ({
       console.log(error);
     })
 }
+
+export const getOrdersUser = async ({
+  commit
+}) => {
+  await Axios.get("http://localhost:8095/order/ordersuser", {
+    withCredentials: true,
+  }).then((result) => {
+    console.log(result.data);
+    commit("ORDERSLOADED", result.data);
+  })
+}

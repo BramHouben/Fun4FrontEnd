@@ -36,20 +36,6 @@
       class="mr-4"
       v-on:click="addProduct(productname,productprice)"
     >Add Product</v-btn>
-    <!-- <v-text-field
-      v-model="search"
-      append-icon="mdi-magnify"
-      label="Search"
-      single-line
-      hide-details
-    ></v-text-field>
-    <v-data-table
-      :headers="headers"
-      :items="renderProducts"
-      :items-per-page="50"
-      :search="search"
-      class="elevation-1"
-    ></v-data-table>-->
   </v-content>
 </template>
 
@@ -82,13 +68,6 @@ export default {
     renderProducts() {
       return this.$store.state.productsLoaded;
     }
-    // headers() {
-    //   return [
-    //     { text: "id", value: "id" },
-    //     { text: "name", value: "productName" },
-    //     { text: "price", value: "productPrice" }
-    //   ];
-    // }
   },
 
   methods: {

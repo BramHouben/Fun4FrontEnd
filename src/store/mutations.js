@@ -2,10 +2,26 @@ export const ADD_PRODUCT = (state, {
     product,
     aantal
 }) => {
-    state.products.push({
-        product,
-        aantal
-    });
+    var isreplaced = false;
+    var testarray = state.products;
+    if (testarray.length >= 0) {
+        testarray.forEach(element => {
+
+            if (element.product == product) {
+                console.log("is gelijk")
+                element.aantal++;
+                isreplaced = true;
+
+            }
+        });
+
+    }
+    if (!isreplaced) {
+        state.products.push({
+            product,
+            aantal
+        });
+    }
 }
 
 export const BUY_PRODUCT = state => {
@@ -49,4 +65,7 @@ export const ISADMIN = (state, value) => {
 
 export const CHECKOUT = status => {
     status.products = [];
+}
+export const ORDERSLOADED = (state, value) => {
+    state.ordersLoaded = value;
 }
