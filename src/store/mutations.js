@@ -7,7 +7,7 @@ export const ADD_PRODUCT = (state, {
     if (testarray.length >= 0) {
         testarray.forEach(element => {
 
-            if (element.product == product) {
+            if (element.product.id == product.id) {
                 console.log("is gelijk")
                 element.aantal++;
                 isreplaced = true;

@@ -41,6 +41,8 @@
 
       <v-divider inset></v-divider>
     </v-list>
+    <h1>{{TotalCartSum}}</h1>
+    <v-btn class="primary" @click="checkout()">Checkout</v-btn>
   </v-content>
 </template>
       
@@ -48,13 +50,13 @@
 export default {
   data() {
     return {
-      cart: this.returnCart()
+      cart: []
     };
   },
 
   methods: {
     returnCart() {
-      return this.$store.state.products;
+      this.cart = this.$store.state.products;
     },
     async checkout() {
       console.log("checkout begin");
@@ -72,6 +74,9 @@ export default {
       sum = parseFloat(sum).toFixed(2);
       return sum;
     }
+  },
+  created() {
+    this.returnCart();
   }
 };
 </script>
