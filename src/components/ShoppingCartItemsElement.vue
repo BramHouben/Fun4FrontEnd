@@ -40,7 +40,6 @@ export default {
   methods: {
     BuyItems() {
       this.$store.dispatch("BuyProducts");
-      // alert("Kopen moet nog gebeuren");
       this.dialog = false;
     }
   },
@@ -48,11 +47,11 @@ export default {
     TotalCartSum: function() {
       var sum = 0;
       this.products.forEach(e => {
-        //     console.log(e.product.price);
         var ttOneProduct = e.aantal * e.product.productPrice;
 
         sum += ttOneProduct;
       });
+      sum = parseFloat(sum).toFixed(2);
       return sum;
     },
 

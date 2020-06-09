@@ -1,10 +1,46 @@
 <template>
   <v-content>
-    <h3>{{cart}}</h3>
-    <h1>Totale prijs: {{TotalCartSum}}</h1>
-    <div>
-      <v-btn class="ma-2" color="primary" v-on:click="checkout()">Checkout</v-btn>
-    </div>
+    <!-- <v-container>
+      <h2 class="display-2 mb-4">cart</h2>
+      <v-list-item two-line>
+        <template v-for="(product,index) in cart">
+          <v-list-item :key="product.product.id" avatar>
+            <v-list-item-avatar>
+              <img :src="product.product.picture" width="75px" />
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>{{product.product.productName}}</v-list-item-title>
+              <v-list-item-subtitle>omschrijving</v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item>{{product.product.productPrice}}</v-list-item>
+          </v-list-item>
+          <v-divider v-if="index+1 <cart.length" :key="index"></v-divider>
+        </template>
+      </v-list-item>
+    </v-container>-->
+
+    <v-list two-line>
+      <v-list-item v-for="product in cart" :key="product.product.id">
+        <v-list-item-avatar>
+          <v-img :src="product.product.picture" width="80px"></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>{{product.product.productName}}</v-list-item-title>
+          <v-list-item-subtitle>Hier moet nog een omschrijving</v-list-item-subtitle>
+        </v-list-item-content>
+
+        <v-list-item-content>
+          <v-list-item>{{product.product.productPrice}}</v-list-item>
+        </v-list-item-content>
+
+        <v-list-item-content>
+          <v-list-item>{{product.aantal}}</v-list-item>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider inset></v-divider>
+    </v-list>
   </v-content>
 </template>
       
@@ -30,7 +66,8 @@ export default {
     TotalCartSum: function() {
       var sum = 0;
       this.cart.forEach(e => {
-        sum += e.product.productPrice;
+        var ttOneProduct = e.aantal * e.product.productPrice;
+        sum += ttOneProduct;
       });
       sum = parseFloat(sum).toFixed(2);
       return sum;
@@ -39,5 +76,5 @@ export default {
 };
 </script>
       
-      <style>
+<style scoped>
 </style>
