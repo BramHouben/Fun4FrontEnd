@@ -188,3 +188,23 @@ export const getOrdersUser = async ({
     commit("ORDERSLOADED", result.data);
   });
 };
+
+export const getDetails = async ({
+  commit
+}, {
+  id
+}) => {
+  console.log(id);
+  console.log(commit)
+
+  return await Axios.get("http://localhost:8095/order/getDetails?id=" + id, {
+    withCredentials: true
+  }).then((result) => {
+    console.log(result.data)
+    return result.data;
+
+  }).catch((error) => {
+    console.log(error);
+
+  })
+}

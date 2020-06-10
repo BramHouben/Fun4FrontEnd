@@ -1,13 +1,22 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="300px">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" dark v-on="on">Details</v-btn>
+      <v-btn color="primary" dark v-on="on" @click="getInfo(order.id)">Details</v-btn>
     </template>
     <v-card class="cardprops">
       <v-card-title>Detials</v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <h3>id: {{order.id}}</h3>
+        <h3>Order id: {{order.id}}</h3>
+        <h2>Totale Prijs: {{orderdetails.totalPrice}}</h2>
+
+        <div
+          v-for="orderdetails in orderdetails.productOrderedList"
+          v-bind:key="orderdetails.id"
+          class="flex-table"
+        >
+          <div>Naam:{{orderdetails.productName}} en aantal:{{orderdetails.count}}</div>
+        </div>
       </v-card-text>
       <v-divider></v-divider>
     </v-card>
@@ -20,9 +29,22 @@ export default {
   props: ["order"],
   data() {
     return {
-      dialog: false
+      dialog: false,
+      orderdetails: []
     };
+  },
+  methods: {
+    async getInfo(orderid) {
+      return await this.$store
+        .dispatch("getDetails", { id: orderid })
+        .then(result => {
+          this.orderdetails = result;
+        });
+    }
   }
+  // method() {
+  //   this.$store.dispatch("getDetails", { orderId: this.order.id });
+  // }
 };
 </script>
     
