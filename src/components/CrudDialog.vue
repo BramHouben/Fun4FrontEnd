@@ -44,7 +44,7 @@ export default {
       inputRulesNumber: [
         v => {
           if (!isNaN(parseFloat(v)) && v >= 0 && v <= 999) return true;
-          return "Number has to be between 0 and 999";
+          return "Number has to be between 0 and 999!";
         }
       ]
     };
