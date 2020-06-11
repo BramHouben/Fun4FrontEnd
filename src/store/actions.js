@@ -208,3 +208,15 @@ export const getDetails = async ({
 
   })
 }
+
+export const logoutuser = async ({
+  commit
+}) => {
+  console.log(commit);
+
+  await Axios.get("http://localhost:8095/logout", {
+    withCredentials: true
+  }).then((result) => {
+    console.log(result);
+  })
+}

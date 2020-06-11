@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import productPage from "@/views/productpage";
 import VueSession from "vue-session";
 // import App from '../views/App.vue'
 import store from '../store/index.js'
@@ -15,7 +14,8 @@ var options = {
 const routes = [{
     path: "/products",
     name: "Products",
-    component: productPage
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/productpage.vue")
   },
   {
     path: "/about",

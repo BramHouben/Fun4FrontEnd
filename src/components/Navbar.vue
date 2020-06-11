@@ -15,7 +15,14 @@
       <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/account">{{username}}</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/login">Login</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/register">Register</v-btn>
-      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/login">Logout</v-btn>
+      <v-btn
+        class="ma-2"
+        outlined
+        color="primary"
+        v-if="isLoggedIn"
+        @click="logout()"
+        to="/logout"
+      >Logout</v-btn>
     </v-app-bar>
   </nav>
 </template>
@@ -46,6 +53,9 @@ export default {
   methods: {
     getusername() {
       return this.username;
+    },
+    async logout() {
+      await this.$store.dispatch("logoutuser");
     }
   },
 

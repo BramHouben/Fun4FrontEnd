@@ -7,7 +7,7 @@ import store from './store';
 
 
 Vue.config.productionTip = false;
-
+// Vue.config.devtools = false
 // module.exports = {
 //   publicPath: process.env.NODE_ENV === 'production' ?
 //     '/funs4frontend/' :
