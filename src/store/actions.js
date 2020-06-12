@@ -220,3 +220,17 @@ export const logoutuser = async ({
     console.log(result);
   })
 }
+
+export const getAllOrdersPlaced = async ({
+  commit
+}) => {
+  console.log(commit);
+
+  return await Axios.get("http://localhost:8095/order", {
+    withCredentials: true
+  }).then((result) => {
+    console.log(result.data);
+    return result.data
+
+  })
+}

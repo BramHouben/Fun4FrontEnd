@@ -7,7 +7,7 @@
 
 
 <script>
-import Crud from "@/components/Crud";
+import Crud from "@/components/Crud.vue";
 export default {
   components: {
     Crud

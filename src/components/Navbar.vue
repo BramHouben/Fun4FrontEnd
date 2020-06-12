@@ -7,6 +7,8 @@
       <v-spacer></v-spacer>
       <v-btn class="ma-2" outlined color="primary" v-if="!userLayout" to="/products">Products</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="userLayout" to="/crud">Crud</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="userLayout" to="/CrudOrders">Orders</v-btn>
+
       <v-btn class="ma-2" outlined color="primary" to="/about">About</v-btn>
       <v-spacer></v-spacer>
       <cartLive v-if="!userLayout"></cartLive>

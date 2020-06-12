@@ -56,7 +56,14 @@ const routes = [{
   {
     path: "/account",
     name: "Account",
+
     component: () => import("../views/AccountPage.vue")
+  },
+  {
+    path: "/CrudOrders",
+    name: "CrudOrders",
+    beforeEnter: isAdmin,
+    component: () => import("../views/CrudOrdersAdmin.vue")
   }
 ];
 

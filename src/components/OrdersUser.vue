@@ -9,7 +9,6 @@
       <div>Details</div>
     </div>
 
-    <!-- todo verander dit naar orders-->
     <div v-for="order in renderOrders" v-bind:key="order.id" class="flex-table">
       <div>{{order.id}}</div>
       <div>{{order.date}}</div>
