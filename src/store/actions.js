@@ -269,3 +269,21 @@ export const deleteUser = async ({
     commit("DELETEACCOUNT");
   })
 }
+
+export const UpdateUser = async ({
+  commit
+}, {
+  name,
+  password
+}) => {
+  console.log(commit);
+  console.log(name);
+  console.log(password);
+  await Axios.put("http://localhost:8095/api/v1/user", {
+    name: name,
+    password: password,
+
+  }, {
+    withCredentials: true
+  })
+}
