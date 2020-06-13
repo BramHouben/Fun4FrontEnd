@@ -50,9 +50,21 @@ export default {
     };
   },
   methods: {
-    changeItem: function(product) {
+    changeItem: async function(product) {
       if (this.$refs.form.validate()) {
-        console.log(product);
+        // var newproduct = {
+        //   id: product.id,
+        //   productName: this.newName,
+        //   price: this.newPrice,
+        //   picture: product.picture
+        // };
+        // console.log(newproduct);
+        await this.$store.dispatch("editProduct", {
+          id: product.id,
+          productName: this.newName,
+          price: this.newPrice,
+          picture: product.picture
+        });
       } else {
         console.log("error");
       }

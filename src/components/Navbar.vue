@@ -58,6 +58,9 @@ export default {
     },
     async logout() {
       await this.$store.dispatch("logoutuser");
+    },
+    returntest() {
+      return 0;
     }
   },
 

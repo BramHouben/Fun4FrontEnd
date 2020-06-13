@@ -69,3 +69,10 @@ export const CHECKOUT = status => {
 export const ORDERSLOADED = (state, value) => {
     state.ordersLoaded = value;
 }
+
+export const DELETEACCOUNT = state => {
+    state.userloggedin = false;
+    state.register = false;
+    state.currentUser = null;
+    state.userLayout = false;
+}

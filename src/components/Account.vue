@@ -1,6 +1,7 @@
 <template>
   <v-content>
     <h1>Account</h1>
+    <v-btn text color="primary" @click="deleteAccount()">OK</v-btn>
     <h2>naam: {{username}}</h2>
     <!-- <v-btn v-on:click="returnOrders()">bestellingen</v-btn> -->
     <div class="flex-table">
@@ -39,6 +40,14 @@ export default {
       await this.$store.dispatch("getOrdersUser");
 
       this.orders = this.$store.state.ordersLoaded;
+    },
+    deleteAccount: async function() {
+      await this.$store.dispatch("deleteUser").then(() => {
+        // this.$router.push("/login")
+        if (!this.$store.state.userloggedin) {
+          this.$router.push("/login");
+        }
+      });
     }
   },
 

@@ -234,3 +234,38 @@ export const getAllOrdersPlaced = async ({
 
   })
 }
+export const editProduct = async ({
+  commit
+}, {
+  id,
+  productName,
+  price,
+  picture
+}) => {
+  // console.log(id)
+  // console.log(productName)
+  // console.log(price)
+  // console.log(picture)
+  console.log(commit)
+  await Axios.put("http://localhost:8095/api/v1/product/edit", {
+    id: id,
+    productName: productName,
+    productPrice: price,
+    picture: picture
+  }, {
+    withCredentials: true
+  })
+}
+
+export const deleteUser = async ({
+  commit
+}) => {
+  console.log(commit);
+
+  await Axios.delete("http://localhost:8095/api/v1/user", {
+    withCredentials: true
+  }).then((result) => {
+    console.log(result);
+    commit("DELETEACCOUNT");
+  })
+}

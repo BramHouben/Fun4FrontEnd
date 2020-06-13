@@ -1,14 +1,17 @@
-import { shallowMount } from "@vue/test-utils";
-import Mainpage from "@/components/Mainpage.vue";
+import {
+  shallowMount
+} from '@vue/test-utils'
+import Register from '@/components/Register.vue'
+import vuetify from "vuetify"
+import Vue from 'vue';
 
-describe("Mainpage.vue", () => {
-  it("renders props.msg when passed", () => {
-    const msg = "new messages";
-    const wrapper = shallowMount(Mainpage, {
-      propsData: {
-        msg
-      }
-    });
-    expect(wrapper.text()).toMatch(msg);
+describe('Home.vue', () => {
+  //  let wrapper;
+  beforeEach(() => {
+    Vue.use(vuetify);
+    //wrapper = shallowMount(Register);
+  })
+  it('renders a vue instance', () => {
+    expect(shallowMount(Register).isVueInstance()).toBe(true);
   });
-});
+})
