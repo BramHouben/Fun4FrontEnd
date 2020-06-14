@@ -4,6 +4,7 @@ import VueSession from "vue-session";
 // import App from '../views/App.vue'
 import store from '../store/index.js'
 
+
 Vue.use(VueRouter);
 Vue.use(VueSession, options);
 
@@ -39,6 +40,7 @@ const routes = [{
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/CrudPage.vue")
   }, {
+    beforeEnter: checkLogin,
     path: "/orders",
     name: "Orders",
     component: () =>
@@ -54,6 +56,7 @@ const routes = [{
     component: () => import("../views/CheckOutPage.vue")
   },
   {
+    beforeEnter: checkLogin,
     path: "/account",
     name: "Account",
 
@@ -73,11 +76,22 @@ const router = new VueRouter({
   routes
 });
 
+
 async function isAdmin(to, from, next) {
   await store.dispatch("checkAdminRights");
 
   if (!store.getters.isAdmin) {
     next('/forbidden')
+  } else {
+    next()
+  }
+}
+
+async function checkLogin(to, from, next) {
+  await store.dispatch("getUsername").catch((test => console.log(test)));
+  console.log(store.getters.isLoggedIn);
+  if (!store.getters.isLoggedIn || store.getters.isLoggedIn == null) {
+    next('/login')
   } else {
     next()
   }

@@ -4,7 +4,7 @@ export const cartItems = (state) => {
 
 
 export const isLoggedIn = (state) => {
-    return state.isLoggedIn;
+    return state.userloggedin;
 }
 export const isAdmin = (state) => {
     return state.isAdmin;

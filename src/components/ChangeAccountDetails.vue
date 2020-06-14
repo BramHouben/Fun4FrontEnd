@@ -4,7 +4,7 @@
 
     <h2>naam: {{username}}</h2>
     <v-spacer></v-spacer>
-    <h2>product toevoegen</h2>
+    <h2>Verander details</h2>
     <v-col cols="12" sm="6">
       <v-text-field v-model="newUsername" label="Username"></v-text-field>
     </v-col>
@@ -15,7 +15,8 @@
       color="success"
       class="mr-4"
       v-on:click="updateAccount(newUsername,newPassword)"
-    >Update Account</v-btn>
+    >Update account</v-btn>
+    <v-btn color="error" @click="deleteAccount()">Delete account</v-btn>
   </v-content>
 </template>
 
@@ -51,6 +52,14 @@ export default {
             this.$router.push("/login");
           }
         });
+    },
+    deleteAccount: async function() {
+      await this.$store.dispatch("deleteUser").then(() => {
+        // this.$router.push("/login")
+        if (!this.$store.state.userloggedin) {
+          this.$router.push("/login");
+        }
+      });
     }
   }
 };
