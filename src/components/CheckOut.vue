@@ -30,8 +30,12 @@
           <v-list-item-subtitle>Hier moet nog een omschrijving</v-list-item-subtitle>
         </v-list-item-content>
 
-        <v-list-item-content>
-          <v-list-item>{{product.product.productPrice}}</v-list-item>
+        <v-list-item-content v-if="product.product.discount==null">
+          <v-list-item>{{product.product.price}}</v-list-item>
+        </v-list-item-content>
+
+        <v-list-item-content v-if="product.product.discount!=null">
+          <v-list-item>Korting: {{product.product.discount}}</v-list-item>
         </v-list-item-content>
 
         <v-list-item-content>
@@ -68,8 +72,13 @@ export default {
     TotalCartSum: function() {
       var sum = 0;
       this.cart.forEach(e => {
-        var ttOneProduct = e.aantal * e.product.productPrice;
-        sum += ttOneProduct;
+        if (e.product.discount != null) {
+          var ttOneProductdiscount = e.aantal * e.product.discount;
+          sum += ttOneProductdiscount;
+        } else {
+          var ttOneProduct = e.aantal * e.product.price;
+          sum += ttOneProduct;
+        }
       });
       sum = parseFloat(sum).toFixed(2);
       return sum;

@@ -1,5 +1,12 @@
 <template>
   <v-content>
+    <v-alert
+      :value="alert"
+      color="green"
+      border="top"
+      transition="scale-transition"
+      dismissible
+    >Discount process done</v-alert>
     <h1>Crud</h1>
 
     <div class="flex-table">
@@ -13,7 +20,7 @@
     <div v-for="product in renderProducts" v-bind:key="product.id" class="flex-table">
       <div>{{product.id}}</div>
       <div>{{product.productName}}</div>
-      <div>{{product.productPrice}}</div>
+      <div>{{product.price}}</div>
       <div>
         <CrudChange :product="product"></CrudChange>
       </div>
@@ -36,6 +43,7 @@
       class="mr-4"
       v-on:click="addProduct(productname,productprice)"
     >Add Product</v-btn>
+    <v-btn color="error" class="mr-4" v-on:click="setDiscounts()">Discount store</v-btn>
   </v-content>
 </template>
 
@@ -53,6 +61,7 @@ export default {
   data() {
     return {
       // search: ""
+      alert: false,
       productname: "",
       productprice: ""
     };
@@ -90,6 +99,14 @@ export default {
       });
       this.productname = "";
       this.productprice = "";
+    },
+    async setDiscounts() {
+      await this.$store.dispatch("DiscountProducts").then(result => {
+        if (result.status == 200) {
+          console.log("200");
+          this.alert = true;
+        }
+      });
     }
   }
 };

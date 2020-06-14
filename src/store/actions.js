@@ -286,3 +286,16 @@ export const UpdateUser = async ({
     withCredentials: true
   })
 }
+
+export const DiscountProducts = async ({
+  commit
+}) => {
+  console.log(commit);
+  return await Axios.get("http://localhost:8095/api/v1/admin/startDiscount", {
+    withCredentials: true
+  }).then((result) => {
+    console.log(result)
+    return result;
+  })
+
+}
