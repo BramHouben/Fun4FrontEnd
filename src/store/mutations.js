@@ -70,6 +70,13 @@ export const ORDERSLOADED = (state, value) => {
     state.ordersLoaded = value;
 }
 
+export const LOGOUTUSER = state => {
+    state.currentUser = null;
+    state.userLayout = false;
+    state.userloggedin = false;
+    console.log("state aangespast")
+}
+
 export const DELETEACCOUNT = state => {
     state.userloggedin = false;
     state.register = false;

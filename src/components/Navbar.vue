@@ -17,14 +17,7 @@
       <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/account">{{username}}</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/login">Login</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/register">Register</v-btn>
-      <v-btn
-        class="ma-2"
-        outlined
-        color="primary"
-        v-if="isLoggedIn"
-        @click="logout()"
-        to="/logout"
-      >Logout</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" @click="logout()">Logout</v-btn>
     </v-app-bar>
   </nav>
 </template>
@@ -54,10 +47,16 @@ export default {
   // },
   methods: {
     getusername() {
-      return this.username;
+      if (this.$store.state.userloggedin) {
+        return this.username;
+      }
     },
     async logout() {
+      console.log("bezig logout");
       await this.$store.dispatch("logoutuser");
+      if (!this.$store.state.userloggedin) {
+        this.$router.push("/login");
+      }
     },
     returntest() {
       return 0;
@@ -66,11 +65,11 @@ export default {
 
   mounted: function() {
     return this.getusername();
-  },
-
-  updated() {
-    return this.getusername();
   }
+
+  // updated() {
+  //   return this.getusername();
+  // }
   // computed: {
   //   checkuser() {
   //     if (this.username != "") {

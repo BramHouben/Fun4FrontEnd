@@ -209,16 +209,15 @@ export const getDetails = async ({
   })
 }
 
-export const logoutuser = async ({
+export const logoutuser = ({
   commit
 }) => {
-  console.log(commit);
-
-  await Axios.get("http://localhost:8095/logout", {
+  Axios.get("http://localhost:8095/logout", {
     withCredentials: true
-  }).then((result) => {
-    console.log(result);
-  })
+  }).then(
+    commit("LOGOUTUSER")
+  )
+
 }
 
 export const getAllOrdersPlaced = async ({
