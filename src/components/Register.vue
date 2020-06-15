@@ -3,7 +3,7 @@
     <h1>Register</h1>
     <v-row align="center">
       <v-row justify="space-around">
-        <v-form ref="form" v-model="valid">
+        <v-form ref="form" v-model="valid" @submit.prevent="validate">
           <v-text-field v-model="email" :rules="emailRegels" label="E-mail" required></v-text-field>
 
           <v-text-field
@@ -35,7 +35,7 @@
 
           <v-checkbox
             v-model="Checkbox"
-            label="Hierin komt nog iets te staan"
+            label="Bij deze accepteer ik het processen van mijn data"
             required
             color="success"
             :rules="checkboxRegels"

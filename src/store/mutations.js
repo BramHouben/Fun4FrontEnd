@@ -74,6 +74,7 @@ export const LOGOUTUSER = state => {
     state.currentUser = null;
     state.userLayout = false;
     state.userloggedin = false;
+    state.products = [];
     console.log("state aangespast")
 }
 

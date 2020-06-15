@@ -5,7 +5,7 @@ export default {
 
     products: [],
 
-    productsLoaded: [],
+    productsLoaded: false,
 
     register: false,
 

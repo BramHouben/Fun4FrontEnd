@@ -17,7 +17,7 @@
       <div>Delete</div>
     </div>
 
-    <div v-for="product in renderProducts" v-bind:key="product.id" class="flex-table">
+    <div v-for="product in productsArray" v-bind:key="product.id" class="flex-table">
       <div>{{product.id}}</div>
       <div>{{product.productName}}</div>
       <div>{{product.price}}</div>
@@ -53,7 +53,12 @@ import CrudChange from "@/components/CrudDialog";
 
 export default {
   name: "crud",
-  props: ["products"],
+  props: {
+    productsArray: {
+      type: Array,
+      required: true
+    }
+  },
 
   components: {
     CrudChange
@@ -64,19 +69,20 @@ export default {
       alert: false,
       productname: "",
       productprice: ""
+      // productList: []
     };
   },
-  mounted() {
-    console.log("loaded test");
-    this.$store.dispatch("loadProducts");
-  },
+  // mounted() {
+  //   console.log("loaded test");
+  //   this.$store.dispatch("loadProducts");
+  // },
 
   computed: {
-    ...mapState(["posts"]),
+    ...mapState(["posts"])
 
-    renderProducts() {
-      return this.$store.state.productsLoaded;
-    }
+    // renderProducts() {
+    //   return this.$store.state.productsLoaded;
+    // }
   },
 
   methods: {

@@ -9,7 +9,7 @@
       <v-btn class="ma-2" outlined color="primary" v-if="userLayout" to="/crud">Crud</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="userLayout" to="/CrudOrders">Orders</v-btn>
 
-      <v-btn class="ma-2" outlined color="primary" to="/about">About</v-btn>
+      <v-btn class="ma-2" outlined color="primary" v-if="!userLayout" to="/about">About</v-btn>
       <v-spacer></v-spacer>
       <cartLive v-if="!userLayout"></cartLive>
       <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/Checkout">Order</v-btn>

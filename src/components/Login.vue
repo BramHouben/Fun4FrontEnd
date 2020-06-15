@@ -1,6 +1,14 @@
 <template>
   <v-content>
+    <v-alert
+      :value="alert"
+      color="red"
+      border="top"
+      transition="scale-transition"
+      dismissible
+    >Login Failed</v-alert>
     <h1>Login</h1>
+
     <v-row align="center">
       <v-row justify="space-around">
         <v-form ref="form" v-model="valid">
@@ -21,7 +29,8 @@ export default {
     emailRegels: [
       // v => !!v || "E-mail is verplicht",
       // v => /.+@.+\..+/.test(v) || "Email moet echt zijn"
-    ]
+    ],
+    alert: false
   }),
 
   methods: {
@@ -48,6 +57,8 @@ export default {
         await this.$store.dispatch("checkAdminRights");
 
         this.$router.push("/about");
+      } else {
+        this.alert = true;
       }
     }
     // async setName() {

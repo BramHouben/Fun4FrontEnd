@@ -23,7 +23,8 @@ export const removeProduct = ({
 }, {
   product_id: product_id
 }) => {
-  commit("REMOVEPRODUCT", product_id);
+  console.log(commit);
+  // commit("REMOVEPRODUCT", product_id);
   console.log("removing....");
   console.log(product_id);
   Axios.delete("http://localhost:8095/api/v1/product/delete/" + product_id, {
@@ -65,15 +66,20 @@ export const addProductToStore = ({
 export const loadProducts = ({
   commit
 }) => {
-  Axios.get("http://localhost:8095/api/v1/product/getProducts")
-    .then((data) => {
-      console.log("Producten vanuit rest worden geladen");
-      console.log(data.data);
-      let posts = data.data;
-      commit("SET_PRODUCTS", posts);
+  return Axios.get("http://localhost:8095/api/v1/product/getProducts")
+    .then((result) => {
+
+      // let posts = result.data;
+      if (result.status == 200) {
+        commit("SET_PRODUCTS", true);
+      } else {
+        commit("SET_PRODUCTS", false);
+      }
+      return result.data;
     })
     .catch((error) => {
       console.log(error);
+      commit("SET_PRODUCTS", false);
     })
     .finally(() => console.log("Data loaded"));
 };
@@ -115,6 +121,8 @@ export const loginUser = async ({
       if (result.status == 200) {
         console.log("200");
         commit("USERLOGGEDIN", true);
+      } else {
+        ("USERLOGGEDIN", false)
       }
     })
     .catch((error) => {

@@ -2,7 +2,7 @@
   <v-content>
     <v-container grid-list-md>
       <v-layout row justify-space-around>
-        <v-flex md3 v-for="product in productsloaded" v-bind:key="product.id">
+        <v-flex md3 v-for="product in productsArray" v-bind:key="product.id">
           <v-card max-width="400" class="cardMain">
             <v-img class="black--text align-end" height="150px" :src="product.picture"></v-img>
             <v-card-title>{{ product.productName }}</v-card-title>
@@ -30,22 +30,26 @@
 import { mapState } from "vuex";
 export default {
   name: "Products",
-
+  props: {
+    productsArray: {
+      type: Array,
+      required: true
+    }
+  },
   // data() {
   //   return {
-  //     productList: []
+  //     productsloaded: []
   //   };
   // },
 
-  mounted() {
-    this.$store.dispatch("loadProducts");
-  },
+  // mounted() {
+  //   this.$store
+  //     .dispatch("loadProducts")
+  //     .then((this.productsloaded = this.$store.state.productsLoaded));
+  // },
 
   computed: {
-    ...mapState(["posts"]),
-    productsloaded() {
-      return this.$store.state.productsLoaded;
-    }
+    ...mapState(["posts"])
   },
   methods: {
     addToCart: function(newproduct) {
@@ -60,8 +64,11 @@ export default {
         });
       }
     }
+    // getProductsloaded() {
+    //    this.$store.state.productsLoaded;
+    // }
   }
 };
 </script>
 
-<style scoped></style>
+<style src= "../css/ProductPage.css" scoped>

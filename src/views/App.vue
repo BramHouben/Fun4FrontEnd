@@ -34,6 +34,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+body {
+  background-color: #eeeeee;
+}
 
 /* #nav {
   padding: 30px;
