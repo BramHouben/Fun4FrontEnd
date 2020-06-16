@@ -74,6 +74,7 @@ export const CHECKOUT = status => {
 }
 export const ORDERSLOADED = (state, value) => {
     state.ordersLoaded = value;
+    state.ordersLoadedSuccesful = true
 }
 
 export const LOGOUTUSER = state => {

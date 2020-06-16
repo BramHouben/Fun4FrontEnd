@@ -22,7 +22,7 @@ export default {
       productsloaded: false
     };
   },
-  mounted() {
+  created() {
     this.$store.dispatch("loadProducts").then(result => {
       this.products = result;
       console.log(this.$store.state.productsLoaded);

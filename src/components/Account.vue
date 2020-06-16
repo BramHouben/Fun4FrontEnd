@@ -10,7 +10,7 @@
       <div>Details</div>
     </div>
 
-    <div v-for="order in orders" v-bind:key="order.id" class="flex-table">
+    <div v-for="order in ordersArray" v-bind:key="order.id" class="flex-table">
       <div>{{order.orderDetailsId}}</div>
 
       <div>{{order.timeBought}}</div>
@@ -27,25 +27,29 @@ export default {
   components: {
     OrderDetails
   },
-
-  data() {
-    return {
-      username: this.$store.state.currentUser,
-      orders: []
-    };
-  },
-
-  methods: {
-    returnOrders: async function() {
-      await this.$store.dispatch("getOrdersUser");
-
-      this.orders = this.$store.state.ordersLoaded;
+  props: {
+    ordersArray: {
+      type: Array,
+      required: true
     }
   },
-
-  created() {
-    this.returnOrders();
+  data() {
+    return {
+      username: this.$store.state.currentUser
+    };
   }
+
+  // methods: {
+  //   returnOrders: async function() {
+  //     await this.$store.dispatch("getOrdersUser");
+
+  //     this.orders = this.$store.state.ordersLoaded;
+  //   }
+  // },
+
+  // created() {
+  //   this.returnOrders();
+  // }
 };
 </script>
 

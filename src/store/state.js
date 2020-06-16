@@ -20,5 +20,8 @@ export default {
     productsOrder: false,
 
     ordersLoaded: [],
-    productAddedSuccesful: null
+
+    productAddedSuccesful: null,
+
+    ordersLoadedSuccesful: false
 }
