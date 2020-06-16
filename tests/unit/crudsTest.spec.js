@@ -61,8 +61,10 @@ describe('Account.vue', () => {
         })
         wrapper = shallowMount(Account, {
             store,
-            localVue
-
+            localVue,
+            propsData: {
+                ordersArray: []
+            }
         });
     });
 

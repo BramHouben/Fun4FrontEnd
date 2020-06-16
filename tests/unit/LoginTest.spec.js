@@ -2,7 +2,7 @@ import {
     shallowMount,
     createLocalVue
 } from '@vue/test-utils'
-import Login from '@/components/login.vue'
+import Login from '@/components/Login.vue'
 import vuetify from "vuetify"
 import Vue from 'vue';
 import Vuex from 'vuex'
