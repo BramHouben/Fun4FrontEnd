@@ -1,10 +1,11 @@
 <template>
   <v-content>
     <v-container grid-list-md>
+      <!-- <v-text-field class="mx-3" flat solo-inverted v-model="search" @click:clear="clearSearch"></v-text-field> -->
       <v-layout row justify-space-around>
         <v-flex md3 v-for="product in productsArray" v-bind:key="product.id">
-          <v-card max-width="400" class="cardMain">
-            <v-img class="black--text align-end" height="150px" :src="product.picture"></v-img>
+          <v-card max-width="400" class="mx-auto">
+            <v-img class="black--text align-end" height="200" :src="product.picture"></v-img>
             <v-card-title>{{ product.productName }}</v-card-title>
             <v-card-subtitle v-if="product.discount ==null" class="pb-0">{{ product.price }} Euro</v-card-subtitle>
             <v-card-subtitle
@@ -12,6 +13,7 @@
               class="pb-0 red"
             >Oude prijs {{ product.price }} Euro</v-card-subtitle>
             <v-card-subtitle v-if="product.discount !=null" class="pb-0">{{ product.discount }} Euro</v-card-subtitle>
+
             <v-card-actions>
               <v-btn icon color="pink">
                 <v-icon>mdi-heart</v-icon>
@@ -36,11 +38,12 @@ export default {
       required: true
     }
   },
-  // data() {
-  //   return {
-  //     productsloaded: []
-  //   };
-  // },
+  data() {
+    return {
+      search: "",
+      productsloaded: []
+    };
+  },
 
   // mounted() {
   //   this.$store
@@ -52,6 +55,9 @@ export default {
     ...mapState(["posts"])
   },
   methods: {
+    clearSearch() {
+      this.search = "";
+    },
     addToCart: function(newproduct) {
       // alert("test " + this.newproduct);
 

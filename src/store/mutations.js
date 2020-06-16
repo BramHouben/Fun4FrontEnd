@@ -51,6 +51,12 @@ export const SETUSER = (state, user) => {
 
 }
 
+export const PRODUCTADDEDSUCCESFUL = (state, value) => {
+
+    state.PRODUCTADDEDSUCCESFUL = value;
+}
+
+
 export const USERLOGGEDIN = state => {
     state.userloggedin = true;
 }

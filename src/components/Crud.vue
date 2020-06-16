@@ -7,6 +7,20 @@
       transition="scale-transition"
       dismissible
     >Discount process done</v-alert>
+    <v-alert
+      :value="productAddedSuccesful"
+      color="green"
+      border="top"
+      transition="scale-transition"
+      dismissible
+    >{{messageText}}</v-alert>
+    <!-- <v-alert
+      :value="errorProduct"
+      color="red"
+      border="top"
+      transition="scale-transition"
+      dismissible
+    >Error adding product!</v-alert>-->
     <h1>Crud</h1>
 
     <div class="flex-table">
@@ -32,17 +46,24 @@
 
     <v-spacer></v-spacer>
     <h2>product toevoegen</h2>
-    <v-col cols="12" sm="6">
-      <v-text-field v-model="productname" label="name"></v-text-field>
-    </v-col>
-    <v-col cols="12" sm="6">
-      <v-text-field v-model="productprice" label="number" type="number"></v-text-field>
-    </v-col>
-    <v-btn
-      color="success"
-      class="mr-4"
-      v-on:click="addProduct(productname,productprice)"
-    >Add Product</v-btn>
+
+    <v-row align="center">
+      <v-row justify="space-around">
+        <v-form ref="form" v-model="valid">
+          <v-text-field v-model="productname" label="Product name" required></v-text-field>
+
+          <v-text-field v-model="productprice" label="Product price" type="number" required></v-text-field>
+
+          <v-btn
+            :disabled="!valid"
+            color="success"
+            class="mr-4"
+            v-on:click="addProduct(productname,productprice)"
+          >Add Product</v-btn>
+        </v-form>
+      </v-row>
+    </v-row>
+
     <v-btn color="error" class="mr-4" v-on:click="setDiscounts()">Discount store</v-btn>
   </v-content>
 </template>
@@ -68,24 +89,24 @@ export default {
       // search: ""
       alert: false,
       productname: "",
-      productprice: ""
+      messageText: "",
+      productprice: "",
+      valid: true,
+      productAddedSuccesful: false,
+      errorProduct: false
       // productList: []
     };
   },
-  // mounted() {
-  //   console.log("loaded test");
-  //   this.$store.dispatch("loadProducts");
-  // },
 
   computed: {
     ...mapState(["posts"])
-
-    // renderProducts() {
-    //   return this.$store.state.productsLoaded;
-    // }
   },
 
   methods: {
+    // validate() {
+    //   console.log( this.$refs.form.validate());
+    // },
+
     changeProduct() {
       this.crudPopup.dialog = true;
     },
@@ -94,8 +115,8 @@ export default {
       this.$store.dispatch("removeProduct", {
         product_id: product.id
       });
-      // window.location.reload();
     },
+
     async addProduct(productname, productprice) {
       console.log(productname);
       console.log(productprice);
@@ -105,6 +126,8 @@ export default {
       });
       this.productname = "";
       this.productprice = "";
+      this.productAddedSuccesful = this.$store.getters.getproductAddedSuccesful;
+      this.messageText = "Product succesful added!";
     },
     async setDiscounts() {
       await this.$store.dispatch("DiscountProducts").then(result => {

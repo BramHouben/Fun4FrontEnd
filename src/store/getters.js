@@ -9,3 +9,7 @@ export const isLoggedIn = (state) => {
 export const isAdmin = (state) => {
     return state.isAdmin;
 }
+
+export const getproductAddedSuccesful = (state) => {
+    return state.productAddedSuccesful
+}

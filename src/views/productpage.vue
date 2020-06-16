@@ -1,8 +1,9 @@
 <template>
   <div id="productPage">
     <router-view />
-    <InterServerErrorPage v-if="!productsloaded"></InterServerErrorPage>
     <Products v-if="productsloaded" v-bind:productsArray="products"></Products>
+
+    <InterServerErrorPage v-if="!productsloaded"></InterServerErrorPage>
   </div>
 </template>
 
@@ -19,11 +20,11 @@ export default {
   data() {
     return {
       products: [],
-      productsloaded: false
+      productsloaded: null
     };
   },
 
-  mounted() {
+  created() {
     this.$store.dispatch("loadProducts").then(result => {
       this.products = result;
       console.log(this.$store.state.productsLoaded);

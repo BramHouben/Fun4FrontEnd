@@ -36,18 +36,18 @@ export const removeProduct = ({
     .finally(() => console.log("Product removed!"));
 };
 
-export const addProductToStore = ({
+export const addProductToStore = async ({
   commit
 }, {
   product_name,
   product_price
 }) => {
-  commit("ADDPRODUCTTOSTORE", product_name);
+
   console.log("adding to store....");
   console.log(product_name);
   console.log(product_price);
-  Axios.post(
-      "http://localhost:8095/api/v1/product/insertproduct/", {
+  await Axios.post(
+      "http://localhost:8095/api/v1/product", {
         productName: product_name,
         productPrice: product_price,
       }, {
@@ -56,9 +56,14 @@ export const addProductToStore = ({
         },
         withCredentials: true,
       }
-    )
+    ).then((result) => {
+      commit("ADDPRODUCTTOSTORE", product_name)
+      commit("PRODUCTADDEDSUCCESFUL", true);
+      console.log(result)
+    })
     .catch((error) => {
       console.log(error);
+      commit("PRODUCTADDEDSUCCESFUL".false);
     })
     .finally(() => console.log("Product added!"));
 };
@@ -153,6 +158,7 @@ export const checkAdminRights = async ({
     withCredentials: true,
   }).then((result) => {
     // console.log(result.data);
+
     commit("ISADMIN", result.data);
   });
 };
@@ -189,7 +195,7 @@ export const checkout = async ({
 export const getOrdersUser = async ({
   commit
 }) => {
-  await Axios.get("http://localhost:8095/order/ordersuser", {
+  await Axios.get("http://localhost:8095/order/ordersUser", {
     withCredentials: true,
   }).then((result) => {
     console.log(result.data);

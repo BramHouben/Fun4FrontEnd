@@ -19,5 +19,6 @@ export default {
 
     productsOrder: false,
 
-    ordersLoaded: []
+    ordersLoaded: [],
+    productAddedSuccesful: null
 }

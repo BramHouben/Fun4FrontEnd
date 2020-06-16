@@ -9,6 +9,7 @@
       <div>Time</div>
       <div>Details</div>
     </div>
+
     <div v-for="order in orders" v-bind:key="order.id" class="flex-table">
       <div>{{order.orderDetailsId}}</div>
 

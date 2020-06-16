@@ -12,9 +12,21 @@
       <v-btn class="ma-2" outlined color="primary" v-if="!userLayout" to="/about">About</v-btn>
       <v-spacer></v-spacer>
       <cartLive v-if="!userLayout"></cartLive>
-      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/Checkout">Order</v-btn>
+      <v-btn
+        class="ma-2"
+        outlined
+        color="primary"
+        v-if="isLoggedIn&& !userLayout"
+        to="/Checkout"
+      >Order</v-btn>
       <v-spacer></v-spacer>
-      <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" to="/account">{{username}}</v-btn>
+      <v-btn
+        class="ma-2"
+        outlined
+        color="primary"
+        v-if="isLoggedIn&& !userLayout"
+        to="/account"
+      >{{username}}</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/login">Login</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="!isLoggedIn" to="/register">Register</v-btn>
       <v-btn class="ma-2" outlined color="primary" v-if="isLoggedIn" @click="logout()">Logout</v-btn>
@@ -57,9 +69,6 @@ export default {
       if (!this.$store.state.userloggedin) {
         this.$router.push("/login");
       }
-    },
-    returntest() {
-      return 0;
     }
   },
 
