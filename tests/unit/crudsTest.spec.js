@@ -72,7 +72,7 @@ describe('Account.vue', () => {
         expect(wrapper.isVueInstance()).toBe(true);
     });
 
-    it('renders', () => {
+    it('renders page', () => {
 
         expect(wrapper.exists()).toBe(true);
     });
