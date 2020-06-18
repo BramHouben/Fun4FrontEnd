@@ -8,7 +8,7 @@
       <v-divider></v-divider>
       <v-card-text>
         <h3>Order id: {{ order.id }}</h3>
-        <h2>Totale Prijs: {{ orderdetails.totalPrice }}</h2>
+        <h2>Totale Prijs: {{ totalPrice }}</h2>
 
         <div
           v-for="orderdetails in orderdetails.productOrderedList"
@@ -34,7 +34,8 @@ export default {
   data() {
     return {
       dialog: false,
-      orderdetails: []
+      orderdetails: [],
+      totalPrice: 0
     };
   },
   methods: {
@@ -43,7 +44,16 @@ export default {
         .dispatch("getDetails", { id: orderid })
         .then(result => {
           this.orderdetails = result;
+          this.totalPriceOrder();
         });
+    },
+    totalPriceOrder: function() {
+      this.orderdetails.productOrderedList.forEach(e => {
+        console.log("foreach");
+        var priceproduct = e.count * e.productPrice;
+        console.log(priceproduct);
+        this.totalPrice += priceproduct;
+      });
     }
   }
   // method() {
