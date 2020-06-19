@@ -176,7 +176,7 @@ export const checkout = async ({
   });
   console.log(productFinal)
   await Axios.post(
-      "http://localhost:8095/order/sendOrder", {
+      "http://localhost:8095/api/v1/order/sendOrder", {
         products: productFinal,
       }, {
         withCredentials: true,
@@ -195,7 +195,7 @@ export const checkout = async ({
 export const getOrdersUser = async ({
   commit
 }) => {
-  return await Axios.get("http://localhost:8095/order/ordersUser", {
+  return await Axios.get("http://localhost:8095/api/v1/order/ordersUser", {
     withCredentials: true,
   }).then((result) => {
     console.log(result.data);
@@ -217,7 +217,7 @@ export const getDetails = async ({
   console.log(id);
   console.log(commit)
 
-  return await Axios.get("http://localhost:8095/order/getDetails?id=" + id, {
+  return await Axios.get("http://localhost:8095/api/v1/order/getDetails?id=" + id, {
     withCredentials: true
   }).then((result) => {
     console.log(result.data)
@@ -245,7 +245,7 @@ export const getAllOrdersPlaced = async ({
 }) => {
   console.log(commit);
 
-  return await Axios.get("http://localhost:8095/order", {
+  return await Axios.get("http://localhost:8095/api/v1/order", {
     withCredentials: true
   }).then((result) => {
     console.log(result.data);

@@ -9,7 +9,6 @@
       <v-card-text>
         <h3>Order id: {{ order.id }}</h3>
         <h2>Totale Prijs: {{ totalPrice }}</h2>
-
         <div
           v-for="orderdetails in orderdetails.productOrderedList"
           v-bind:key="orderdetails.id"
@@ -46,19 +45,8 @@ export default {
           this.orderdetails = result;
           this.totalPrice = this.orderdetails.totalPrice;
         });
-
-      // totalPriceOrder: function() {
-      //   this.orderdetails.productOrderedList.forEach(e => {
-      //     console.log("foreach");
-      //     var priceproduct = e.count * e.productPrice;
-      //     console.log(priceproduct);
-      //     this.totalPrice += priceproduct;
-      //   });
     }
   }
-  // method() {
-  //   this.$store.dispatch("getDetails", { orderId: this.order.id });
-  // }
 };
 </script>
 
