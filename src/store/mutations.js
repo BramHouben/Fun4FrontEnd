@@ -57,8 +57,8 @@ export const PRODUCTADDEDSUCCESFUL = (state, value) => {
 }
 
 
-export const USERLOGGEDIN = state => {
-    state.userloggedin = true;
+export const USERLOGGEDIN = (state, value) => {
+    state.userloggedin = value;
 }
 
 export const ISADMIN = (state, value) => {
