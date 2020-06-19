@@ -167,14 +167,14 @@ export const checkout = async ({
 }) => {
   let productsloaded = store.state.products;
   var productFinal = [];
-
+  console.log(productsloaded)
   productsloaded.forEach((product) => {
     //aantal erbij
     var element = product.product;
     element.count = product.aantal;
     productFinal.push(element);
   });
-
+  console.log(productFinal)
   await Axios.post(
       "http://localhost:8095/order/sendOrder", {
         products: productFinal,

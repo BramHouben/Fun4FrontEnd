@@ -44,16 +44,16 @@ export default {
         .dispatch("getDetails", { id: orderid })
         .then(result => {
           this.orderdetails = result;
-          this.totalPriceOrder();
+          this.totalPrice = this.orderdetails.totalPrice;
         });
-    },
-    totalPriceOrder: function() {
-      this.orderdetails.productOrderedList.forEach(e => {
-        console.log("foreach");
-        var priceproduct = e.count * e.productPrice;
-        console.log(priceproduct);
-        this.totalPrice += priceproduct;
-      });
+
+      // totalPriceOrder: function() {
+      //   this.orderdetails.productOrderedList.forEach(e => {
+      //     console.log("foreach");
+      //     var priceproduct = e.count * e.productPrice;
+      //     console.log(priceproduct);
+      //     this.totalPrice += priceproduct;
+      //   });
     }
   }
   // method() {
