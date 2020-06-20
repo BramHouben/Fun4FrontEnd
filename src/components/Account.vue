@@ -2,20 +2,20 @@
   <v-content>
     <h1>Account</h1>
     <h2>naam: {{username}}</h2>
-    <!-- <v-btn v-on:click="returnOrders()">bestellingen</v-btn> -->
     <div class="flex-table">
       <div>Order id</div>
 
       <div>Time</div>
       <div>Details</div>
     </div>
+    <div v-if="ordersArray.length>=1">
+      <div v-for="order in ordersArray" v-bind:key="order.id" class="flex-table">
+        <div>{{order.orderDetailsId}}</div>
 
-    <div v-for="order in ordersArray" v-bind:key="order.id" class="flex-table">
-      <div>{{order.orderDetailsId}}</div>
-
-      <div>{{order.timeBought}}</div>
-      <div>
-        <OrderDetails :order="order"></OrderDetails>
+        <div>{{order.timeBought}}</div>
+        <div>
+          <OrderDetails :order="order"></OrderDetails>
+        </div>
       </div>
     </div>
   </v-content>
