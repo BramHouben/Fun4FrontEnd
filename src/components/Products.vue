@@ -4,7 +4,7 @@
       <!-- <v-text-field class="mx-3" flat solo-inverted v-model="search" @click:clear="clearSearch"></v-text-field> -->
       <v-layout row justify-space-around>
         <v-flex md3 v-for="product in productsArray" v-bind:key="product.id">
-          <v-card max-width="400" class="mx-auto">
+          <v-card max-width="400" class="mx-auto" min-height="360">
             <v-img class="black--text align-end" height="200" :src="product.picture"></v-img>
             <v-card-title>{{ product.productName }}</v-card-title>
             <v-card-subtitle v-if="product.discount ==null" class="pb-0">{{ product.price }} Euro</v-card-subtitle>
