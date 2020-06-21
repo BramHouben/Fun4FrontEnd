@@ -94,7 +94,6 @@ export default {
       valid: true,
       productAddedSuccesful: false,
       errorProduct: false
-      // productList: []
     };
   },
 

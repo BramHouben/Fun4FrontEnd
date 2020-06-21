@@ -22,7 +22,7 @@ export default {
       productsloaded: false
     };
   },
-  created() {
+  async created() {
     this.$store.dispatch("loadProducts").then(result => {
       this.products = result;
       console.log(this.$store.state.productsLoaded);

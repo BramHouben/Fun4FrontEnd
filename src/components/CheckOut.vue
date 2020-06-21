@@ -30,7 +30,7 @@
       <h1>{{TotalCartSum}}</h1>
       <v-btn class="primary" @click="checkout()">Checkout</v-btn>
     </div>
-    <div v-else-if="cart.lenght ==0">
+    <div v-if="cartempty">
       <h1>winkelwagen is leeg!</h1>
     </div>
   </v-content>
@@ -40,13 +40,17 @@
 export default {
   data() {
     return {
-      cart: []
+      cart: [],
+      cartempty: false
     };
   },
 
   methods: {
     returnCart() {
       this.cart = this.$store.state.products;
+      if (this.cart.length == 0) {
+        this.cartempty = true;
+      }
     },
     async checkout() {
       console.log("checkout begin");

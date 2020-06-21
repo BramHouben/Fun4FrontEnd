@@ -9,9 +9,9 @@
     </div>
 
     <!-- todo verander dit naar orders-->
-    <div v-for="order in orders" v-bind:key="order.id" class="flex-table">
-      <div>{{order.orderDetailsId}}</div>
+    <div v-for="order in ordersArray" v-bind:key="order.id" class="flex-table">
       <div>{{order.timeBought}}</div>
+      <div>{{order.orderDetailsId}}</div>
       <div>{{order.userId}}</div>
     </div>
   </v-content>
@@ -22,26 +22,10 @@
 
 export default {
   name: "ordersCrud",
-  // props: ["orders"],
-
-  data() {
-    return {
-      // search: ""
-      //   productname: "",
-      //   productprice: ""
-      orders: []
-    };
-  },
-  created() {
-    console.log("Load orders");
-    this.getOrders();
-  },
-  methods: {
-    async getOrders() {
-      await this.$store.dispatch("getAllOrdersPlaced").then(result => {
-        console.log(result);
-        this.orders = result;
-      });
+  props: {
+    ordersArray: {
+      type: Array,
+      required: true
     }
   }
 };

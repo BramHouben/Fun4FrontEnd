@@ -2,7 +2,7 @@
   <v-content>
     <h1>Account</h1>
 
-    <h2>naam: {{username}}</h2>
+    <!-- <h2>naam: {{username}}</h2> -->
     <v-spacer></v-spacer>
     <h2>Verander details</h2>
     <v-col cols="12" sm="6">
