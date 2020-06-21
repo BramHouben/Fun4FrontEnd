@@ -53,7 +53,7 @@ export const SETUSER = (state, user) => {
 
 export const PRODUCTADDEDSUCCESFUL = (state, value) => {
 
-    state.PRODUCTADDEDSUCCESFUL = value;
+    state.productAddedSuccesful = value;
 }
 
 

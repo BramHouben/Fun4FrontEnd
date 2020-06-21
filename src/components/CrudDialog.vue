@@ -9,7 +9,7 @@
       <v-card-text>
         <h3>id: {{product.id}}</h3>
         <h3>Name: {{product.productName}}</h3>
-        <h3>Price: {{product.productPrice}}</h3>
+        <h3>Price: {{product.price}}</h3>
       </v-card-text>
       <v-divider></v-divider>
       <v-form ref="form">
@@ -52,21 +52,18 @@ export default {
   methods: {
     changeItem: async function(product) {
       if (this.$refs.form.validate()) {
-        // var newproduct = {
-        //   id: product.id,
-        //   productName: this.newName,
-        //   price: this.newPrice,
-        //   picture: product.picture
-        // };
-        // console.log(newproduct);
-        await this.$store.dispatch("editProduct", {
-          id: product.id,
-          productName: this.newName,
-          price: this.newPrice,
-          picture: product.picture
-        });
-      } else {
-        console.log("error");
+        await this.$store
+          .dispatch("editProduct", {
+            id: product.id,
+            productName: this.newName,
+            price: this.newPrice
+          })
+          .then(result => {
+            if (result.status == 200) {
+              this.dialog = false;
+              this.$router.go("/crud");
+            }
+          });
       }
     }
   }

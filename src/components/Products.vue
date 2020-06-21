@@ -45,12 +45,6 @@ export default {
     };
   },
 
-  // mounted() {
-  //   this.$store
-  //     .dispatch("loadProducts")
-  //     .then((this.productsloaded = this.$store.state.productsLoaded));
-  // },
-
   computed: {
     ...mapState(["posts"])
   },
@@ -59,20 +53,13 @@ export default {
       this.search = "";
     },
     addToCart: function(newproduct) {
-      // alert("test " + this.newproduct);
-
       if (event) {
-        // alert(product.name);
-
         this.$store.dispatch("addProduct", {
           product: newproduct,
           aantal: 1
         });
       }
     }
-    // getProductsloaded() {
-    //    this.$store.state.productsLoaded;
-    // }
   }
 };
 </script>

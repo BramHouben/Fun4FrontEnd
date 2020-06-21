@@ -14,6 +14,13 @@
       transition="scale-transition"
       dismissible
     >{{messageText}}</v-alert>
+    <v-alert
+      :value="productDeletedSuccesful"
+      color="green"
+      border="top"
+      transition="scale-transition"
+      dismissible
+    >{{messageText}}</v-alert>
     <!-- <v-alert
       :value="errorProduct"
       color="red"
@@ -22,27 +29,32 @@
       dismissible
     >Error adding product!</v-alert>-->
     <h1>Crud</h1>
-
-    <div class="flex-table">
-      <div>ID</div>
-      <div>Name</div>
-      <div>Price</div>
-      <div>Change</div>
-      <div>Delete</div>
-    </div>
-
-    <div v-for="product in productsArray" v-bind:key="product.id" class="flex-table">
-      <div>{{product.id}}</div>
-      <div>{{product.productName}}</div>
-      <div>{{product.price}}</div>
-      <div>
-        <CrudChange :product="product"></CrudChange>
-      </div>
-
-      <div>
-        <v-btn class="ma-2" color="error" v-on:click="deleteProduct(product)">Delete</v-btn>
-      </div>
-    </div>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Change</th>
+            <th class="text-center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="product in productsArray" v-bind:key="product.id">
+            <td>{{ product.id }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+              <CrudChange :product="product"></CrudChange>
+            </td>
+            <td>
+              <v-btn class="ma-2" color="error" v-on:click="deleteProduct(product)">Delete</v-btn>
+            </td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
 
     <v-spacer></v-spacer>
     <h2>product toevoegen</h2>
@@ -95,7 +107,8 @@ export default {
       valid: true,
       productAddedSuccesful: false,
       errorProduct: false,
-      picture: null
+      picture: null,
+      productDeletedSuccesful: false
     };
   },
 
@@ -111,11 +124,14 @@ export default {
     changeProduct() {
       this.crudPopup.dialog = true;
     },
-    deleteProduct(product) {
+    async deleteProduct(product) {
       console.log(product.id);
-      this.$store.dispatch("removeProduct", {
+      await this.$store.dispatch("removeProduct", {
         product_id: product.id
       });
+      this.productsArray.splice(this.productsArray.indexOf(product), 1);
+      this.productDeletedSuccesful = true;
+      this.messageText = "Product succesful deleted!";
     },
 
     async addProduct(productname, productprice, picture) {
@@ -128,6 +144,7 @@ export default {
       this.productprice = "";
       this.productAddedSuccesful = this.$store.getters.getproductAddedSuccesful;
       this.messageText = "Product succesful added!";
+      this.picture = null;
     },
     async setDiscounts() {
       await this.$store.dispatch("DiscountProducts").then(result => {

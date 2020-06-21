@@ -263,23 +263,22 @@ export const editProduct = async ({
   id,
   productName,
   price,
-  picture
+
 }) => {
-  // console.log(id)
-  // console.log(productName)
-  // console.log(price)
-  // console.log(picture)
+
   console.log(commit);
-  await Axios.put(
+  return await Axios.put(
     "http://localhost:8095/api/v1/product/edit", {
       id: id,
       productName: productName,
-      productPrice: price,
-      picture: picture,
+      productPrice: price
+
     }, {
       withCredentials: true,
     }
-  );
+  ).catch((error) => {
+    console.log(error)
+  })
 };
 
 export const deleteUser = async ({
