@@ -53,12 +53,13 @@
           <v-text-field v-model="productname" label="Product name" required></v-text-field>
 
           <v-text-field v-model="productprice" label="Product price" type="number" required></v-text-field>
+          <v-file-input v-model="picture" accept="image/*" label="Foto"></v-file-input>
 
           <v-btn
             :disabled="!valid"
             color="success"
             class="mr-4"
-            v-on:click="addProduct(productname,productprice)"
+            v-on:click="addProduct(productname,productprice,picture)"
           >Add Product</v-btn>
         </v-form>
       </v-row>
@@ -93,7 +94,8 @@ export default {
       productprice: "",
       valid: true,
       productAddedSuccesful: false,
-      errorProduct: false
+      errorProduct: false,
+      picture: null
     };
   },
 
@@ -116,12 +118,11 @@ export default {
       });
     },
 
-    async addProduct(productname, productprice) {
-      console.log(productname);
-      console.log(productprice);
+    async addProduct(productname, productprice, picture) {
       await this.$store.dispatch("addProductToStore", {
         product_name: productname,
-        product_price: productprice
+        product_price: productprice,
+        picture: picture
       });
       this.productname = "";
       this.productprice = "";

@@ -1,51 +1,70 @@
 import Axios from "axios";
 import store from ".";
 
-export const addProduct = ({ commit }, { product, aantal }) => {
+export const addProduct = ({
+  commit
+}, {
+  product,
+  aantal
+}) => {
   commit("ADD_PRODUCT", {
     product,
     aantal,
   });
 };
-export const BuyProducts = ({ commit }) => {
+export const BuyProducts = ({
+  commit
+}) => {
   commit("BUY_PRODUCT");
 };
 
-export const removeProduct = ({ commit }, { product_id: product_id }) => {
+export const removeProduct = ({
+  commit
+}, {
+  product_id: product_id
+}) => {
   console.log(commit);
   // commit("REMOVEPRODUCT", product_id);
   console.log("removing....");
   console.log(product_id);
   Axios.delete("http://localhost:8095/api/v1/product/delete/" + product_id, {
-    withCredentials: true,
-  })
+      withCredentials: true,
+    })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => console.log("Product removed!"));
 };
 
-export const addProductToStore = async (
-  { commit },
-  { product_name, product_price }
-) => {
+export const addProductToStore = async ({
+  commit
+}, {
+  product_name,
+  product_price,
+  picture
+}) => {
   console.log("adding to store....");
   console.log(product_name);
   console.log(product_price);
+  console.log(picture)
   await Axios.post(
-    "http://localhost:8095/api/v1/product",
-    {
-      productName: product_name,
-      productPrice: product_price,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    }
-  )
+      "http://localhost:8095/api/v1/product", {
+        productName: product_name,
+        productPrice: product_price
+      }, {
+        withCredentials: true
+      }
+    )
     .then((result) => {
+      let formData = new FormData();
+      formData.append('file', picture)
+      formData.append('name', product_name)
+      Axios.post('http://localhost:8095/api/v1/picture', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        withCredentials: true
+      });
       commit("ADDPRODUCTTOSTORE", product_name);
       commit("PRODUCTADDEDSUCCESFUL", true);
       console.log(result);
@@ -57,7 +76,9 @@ export const addProductToStore = async (
     .finally(() => console.log("Product added!"));
 };
 
-export const loadProducts = ({ commit }) => {
+export const loadProducts = ({
+  commit
+}) => {
   return Axios.get("http://localhost:8095/api/v1/product/getProducts")
     .then((result) => {
       // let posts = result.data;
@@ -75,37 +96,46 @@ export const loadProducts = ({ commit }) => {
     .finally(() => console.log("Data loaded"));
 };
 
-export const registerUser = ({ commit }, { email, password }) => {
+export const registerUser = ({
+  commit
+}, {
+  email,
+  password
+}) => {
   commit("REGISTERUSER");
   console.log("inserting");
   Axios.post("http://localhost:8095/api/v1/user/register", {
-    name: email,
-    password: password,
-  })
+      name: email,
+      password: password,
+    })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => console.log("user inserted!"));
 };
 
-export const loginUser = async ({ commit }, { email, password }) => {
+export const loginUser = async ({
+  commit
+}, {
+  email,
+  password
+}) => {
   await Axios.post(
-    "http://localhost:8095/login",
-    {
-      username: email,
-      password: password,
-    },
-    {
-      withCredentials: true,
-    }
-  )
+      "http://localhost:8095/login", {
+        username: email,
+        password: password,
+      }, {
+        withCredentials: true,
+      }
+    )
     .then((result) => {
       console.log("succes", result);
       if (result.status == 200) {
         console.log("200");
         commit("USERLOGGEDIN", true);
       } else {
-        "USERLOGGEDIN", false;
+        "USERLOGGEDIN",
+        false;
       }
     })
     .catch((error) => {
@@ -114,7 +144,9 @@ export const loginUser = async ({ commit }, { email, password }) => {
     .finally(console.log("zitten in finally"));
 };
 
-export const getUsername = async ({ commit }) => {
+export const getUsername = async ({
+  commit
+}) => {
   console.log("zitten in get username");
   await Axios.get("http://localhost:8095/api/v1/user/getUsername", {
     withCredentials: true,
@@ -126,7 +158,9 @@ export const getUsername = async ({ commit }) => {
   });
 };
 
-export const checkAdminRights = async ({ commit }) => {
+export const checkAdminRights = async ({
+  commit
+}) => {
   //console.log("Check admin rechten");
   await Axios.get("http://localhost:8095/api/v1/user/confirmCredentials", {
     withCredentials: true,
@@ -136,7 +170,9 @@ export const checkAdminRights = async ({ commit }) => {
     commit("ISADMIN", result.data);
   });
 };
-export const checkout = async ({ commit }) => {
+export const checkout = async ({
+  commit
+}) => {
   let productsloaded = store.state.products;
   var productFinal = [];
   console.log(productsloaded);
@@ -148,14 +184,12 @@ export const checkout = async ({ commit }) => {
   });
   console.log(productFinal);
   await Axios.post(
-    "http://localhost:8095/api/v1/order/sendOrder",
-    {
-      products: productFinal,
-    },
-    {
-      withCredentials: true,
-    }
-  )
+      "http://localhost:8095/api/v1/order/sendOrder", {
+        products: productFinal,
+      }, {
+        withCredentials: true,
+      }
+    )
     .then((result) => {
       console.log(result);
       commit("CHECKOUT");
@@ -166,7 +200,9 @@ export const checkout = async ({ commit }) => {
     });
 };
 
-export const getOrdersUser = async ({ commit }) => {
+export const getOrdersUser = async ({
+  commit
+}) => {
   return await Axios.get("http://localhost:8095/api/v1/order/ordersUser", {
     withCredentials: true,
   }).then((result) => {
@@ -179,16 +215,19 @@ export const getOrdersUser = async ({ commit }) => {
   });
 };
 
-export const getDetails = async ({ commit }, { id }) => {
+export const getDetails = async ({
+  commit
+}, {
+  id
+}) => {
   console.log(id);
   console.log(commit);
 
   return await Axios.get(
-    "http://localhost:8095/api/v1/order/getDetails?id=" + id,
-    {
-      withCredentials: true,
-    }
-  )
+      "http://localhost:8095/api/v1/order/getDetails?id=" + id, {
+        withCredentials: true,
+      }
+    )
     .then((result) => {
       console.log(result.data);
       return result.data;
@@ -198,13 +237,17 @@ export const getDetails = async ({ commit }, { id }) => {
     });
 };
 
-export const logoutuser = ({ commit }) => {
+export const logoutuser = ({
+  commit
+}) => {
   Axios.get("http://localhost:8095/logout", {
     withCredentials: true,
   }).then(commit("LOGOUTUSER"));
 };
 
-export const getAllOrdersPlaced = async ({ commit }) => {
+export const getAllOrdersPlaced = async ({
+  commit
+}) => {
   console.log(commit);
 
   return await Axios.get("http://localhost:8095/api/v1/order", {
@@ -214,30 +257,34 @@ export const getAllOrdersPlaced = async ({ commit }) => {
     return result.data;
   });
 };
-export const editProduct = async (
-  { commit },
-  { id, productName, price, picture }
-) => {
+export const editProduct = async ({
+  commit
+}, {
+  id,
+  productName,
+  price,
+  picture
+}) => {
   // console.log(id)
   // console.log(productName)
   // console.log(price)
   // console.log(picture)
   console.log(commit);
   await Axios.put(
-    "http://localhost:8095/api/v1/product/edit",
-    {
+    "http://localhost:8095/api/v1/product/edit", {
       id: id,
       productName: productName,
       productPrice: price,
       picture: picture,
-    },
-    {
+    }, {
       withCredentials: true,
     }
   );
 };
 
-export const deleteUser = async ({ commit }) => {
+export const deleteUser = async ({
+  commit
+}) => {
   console.log(commit);
 
   await Axios.delete("http://localhost:8095/api/v1/user", {
@@ -248,23 +295,28 @@ export const deleteUser = async ({ commit }) => {
   });
 };
 
-export const UpdateUser = async ({ commit }, { name, password }) => {
+export const UpdateUser = async ({
+  commit
+}, {
+  name,
+  password
+}) => {
   console.log(commit);
   console.log(name);
   console.log(password);
   await Axios.put(
-    "http://localhost:8095/api/v1/user",
-    {
+    "http://localhost:8095/api/v1/user", {
       name: name,
       password: password,
-    },
-    {
+    }, {
       withCredentials: true,
     }
   );
 };
 
-export const DiscountProducts = async ({ commit }) => {
+export const DiscountProducts = async ({
+  commit
+}) => {
   console.log(commit);
   return await Axios.get("http://localhost:8095/api/v1/admin/startDiscount", {
     withCredentials: true,

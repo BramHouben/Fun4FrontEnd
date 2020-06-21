@@ -39,8 +39,9 @@ export default {
   },
   methods: {
     BuyItems() {
-      this.$store.dispatch("BuyProducts");
+      // this.$store.dispatch("BuyProducts");
       this.dialog = false;
+      this.$router.push("Checkout");
     }
   },
   computed: {
