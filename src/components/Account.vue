@@ -2,22 +2,26 @@
   <v-content>
     <h1>Account</h1>
     <h2>naam: {{username}}</h2>
-    <div class="flex-table">
-      <div>Order id</div>
-
-      <div>Time</div>
-      <div>Details</div>
-    </div>
-    <div v-if="ordersArray.length>=1">
-      <div v-for="order in ordersArray" v-bind:key="order.id" class="flex-table">
-        <div>{{order.orderDetailsId}}</div>
-
-        <div>{{order.timeBought}}</div>
-        <div>
-          <OrderDetails :order="order"></OrderDetails>
-        </div>
-      </div>
-    </div>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Tijd</th>
+            <th class="text-center">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="order in ordersArray" v-bind:key="order.id">
+            <td>{{ order.orderDetailsId }}</td>
+            <td>{{ order.timeBought }}</td>
+            <td>
+              <OrderDetails :order="order"></OrderDetails>
+            </td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
   </v-content>
 </template>
 
