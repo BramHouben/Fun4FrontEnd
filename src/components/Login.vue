@@ -77,7 +77,7 @@ export default {
         await this.$store.dispatch("getUsername");
         await this.$store.dispatch("checkAdminRights");
 
-        this.$router.push("/about");
+        this.$router.push("/products");
       } else {
         this.alert = true;
       }

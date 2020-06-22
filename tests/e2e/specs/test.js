@@ -10,26 +10,26 @@ module.exports = {
   },
   'checkpaginavisable': browser => {
     browser
-      .url("http://localhost:8080/login")
+      .url("http://localhost:8080/#/login")
       .waitForElementVisible('#app')
       .end()
   },
 
   'checkpaginavisable2': browser => {
     browser
-      .url("http://localhost:8080/about")
+      .url("http://localhost:8080/#/about")
       .waitForElementVisible('#app')
       .end()
   },
   'checkpaginavisable3': browser => {
     browser
-      .url("http://localhost:8080/register")
+      .url("http://localhost:8080/#/register")
       .waitForElementVisible('#app')
       .end()
   },
   'checkpaginavisable4': browser => {
     browser
-      .url("http://localhost:8080/products")
+      .url("http://localhost:8080/#/products")
       .waitForElementVisible('#app')
       .end()
   },
@@ -108,5 +108,39 @@ module.exports = {
       .setValue(query1, username)
       .setValue(query2, password)
       .saveScreenshot('screenshots/registerboth.png')
+  },
+  'logintest2': browser => {
+    const username = "user"
+    const password = "test123";
+    //  const password = "test123";
+    const query1 = '[id="textFieldUsername"]';
+    const query2 = '[id="textFieldPassword"]';
+    const btn = '[id="buttonLogin"]';
+
+    browser
+      .url("http://localhost:8080/#/login")
+      .waitForElementVisible('#textFieldUsername')
+      .setValue(query1, username)
+      .setValue(query2, password)
+      .click(btn)
+      .saveScreenshot('screenshots/productsafterlogin.png')
+  },
+  'admintest': browser => {
+    const username = "admin"
+    const password = "password";
+    //  const password = "test123";
+    const query1 = '[id="textFieldUsername"]';
+    const query2 = '[id="textFieldPassword"]';
+    const btn = '[id="buttonLogin"]';
+
+    browser
+      .url("http://localhost:8080/#/login")
+      .waitForElementVisible('#textFieldUsername')
+      .setValue(query1, username)
+      .setValue(query2, password)
+      .click(btn)
+      .url("http://localhost:8080/#/crud")
+
+      .saveScreenshot('screenshots/crudAdmin.png')
   }
 }

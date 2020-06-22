@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="11">
+            tests="13">
 
   <testsuite name="test"
     errors="0" failures="0" hostname="" id="" package="test" skipped="0"
-    tests="11" time="20.92" timestamp="">
+    tests="13" time="21.02" timestamp="">
   
-    <testcase name="default e2e tests" classname="test" time="1.287" assertions="1">
+    <testcase name="default e2e tests" classname="test" time="0.6790" assertions="1">
 
     
     </testcase>
   
-    <testcase name="checkpaginavisable" classname="test" time="3.439" assertions="1">
+    <testcase name="checkpaginavisable" classname="test" time="3.326" assertions="1">
 
     
     </testcase>
   
-    <testcase name="checkpaginavisable2" classname="test" time="3.302" assertions="1">
+    <testcase name="checkpaginavisable2" classname="test" time="3.244" assertions="1">
 
     
     </testcase>
   
-    <testcase name="checkpaginavisable3" classname="test" time="3.214" assertions="1">
+    <testcase name="checkpaginavisable3" classname="test" time="3.287" assertions="1">
 
     
     </testcase>
   
-    <testcase name="checkpaginavisable4" classname="test" time="3.262" assertions="1">
+    <testcase name="checkpaginavisable4" classname="test" time="3.332" assertions="1">
 
     
     </testcase>
   
-    <testcase name="logintestuser" classname="test" time="4.261" assertions="1">
+    <testcase name="logintestuser" classname="test" time="3.623" assertions="1">
 
     
     </testcase>
   
-    <testcase name="logintestpassword" classname="test" time="0.3780" assertions="1">
+    <testcase name="logintestpassword" classname="test" time="0.3690" assertions="1">
 
     
     </testcase>
   
-    <testcase name="registeruser" classname="test" time="0.5170" assertions="1">
+    <testcase name="registeruser" classname="test" time="0.5020" assertions="1">
 
     
     </testcase>
   
-    <testcase name="registerpassword" classname="test" time="0.3700" assertions="1">
+    <testcase name="registerpassword" classname="test" time="0.3620" assertions="1">
 
     
     </testcase>
   
-    <testcase name="loginboth" classname="test" time="0.4310" assertions="1">
+    <testcase name="loginboth" classname="test" time="0.4160" assertions="1">
 
     
     </testcase>
   
-    <testcase name="registerboth" classname="test" time="0.4600" assertions="1">
+    <testcase name="registerboth" classname="test" time="0.6120" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="logintest2" classname="test" time="0.5670" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="admintest" classname="test" time="0.7010" assertions="1">
 
     
     </testcase>
