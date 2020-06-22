@@ -6,21 +6,24 @@
       border="top"
       transition="scale-transition"
       dismissible
-    >Discount process done</v-alert>
+      >Discount process done</v-alert
+    >
     <v-alert
       :value="productAddedSuccesful"
       color="green"
       border="top"
       transition="scale-transition"
       dismissible
-    >{{messageText}}</v-alert>
+      >{{ messageText }}</v-alert
+    >
     <v-alert
       :value="productDeletedSuccesful"
       color="green"
       border="top"
       transition="scale-transition"
       dismissible
-    >{{messageText}}</v-alert>
+      >{{ messageText }}</v-alert
+    >
     <!-- <v-alert
       :value="errorProduct"
       color="red"
@@ -49,7 +52,12 @@
               <CrudChange :product="product"></CrudChange>
             </td>
             <td>
-              <v-btn class="ma-2" color="error" v-on:click="deleteProduct(product)">Delete</v-btn>
+              <v-btn
+                class="ma-2"
+                color="error"
+                v-on:click="deleteProduct(product)"
+                >Delete</v-btn
+              >
             </td>
           </tr>
         </tbody>
@@ -62,23 +70,42 @@
     <v-row align="center">
       <v-row justify="space-around">
         <v-form ref="form" v-model="valid">
-          <v-text-field v-model="productname" label="Product name" required></v-text-field>
+          <v-text-field
+            :rules="[rules.required, rules.minLength]"
+            v-model="productname"
+            label="Product name"
+            required
+          ></v-text-field>
 
-          <v-text-field v-model="productprice" label="Product price" type="number" required></v-text-field>
-          <v-file-input v-model="picture" accept="image/*" label="Foto"></v-file-input>
+          <v-text-field
+            v-model="productprice"
+            label="Product price"
+            type="number"
+            :rules="[rules.required]"
+            required
+          ></v-text-field>
+          <v-file-input
+            v-model="picture"
+            accept="image/*"
+            :rules="[rules.required]"
+            label="Foto"
+          ></v-file-input>
 
           <v-btn
             :disabled="!valid"
             color="success"
             id="addButtonProduct"
             class="mr-4"
-            v-on:click="addProduct(productname,productprice,picture)"
-          >Add Product</v-btn>
+            v-on:click="addProduct(productname, productprice, picture)"
+            >Add Product</v-btn
+          >
         </v-form>
       </v-row>
     </v-row>
 
-    <v-btn color="error" class="mr-4" v-on:click="setDiscounts()">Discount store</v-btn>
+    <v-btn color="error" class="mr-4" v-on:click="setDiscounts()"
+      >Discount store</v-btn
+    >
   </v-content>
 </template>
 
@@ -91,12 +118,12 @@ export default {
   props: {
     productsArray: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
 
   components: {
-    CrudChange
+    CrudChange,
   },
   data() {
     return {
@@ -105,16 +132,21 @@ export default {
       productname: "",
       messageText: "",
       productprice: "",
-      valid: true,
+      valid: false,
       productAddedSuccesful: false,
       errorProduct: false,
       picture: null,
-      productDeletedSuccesful: false
+      productDeletedSuccesful: false,
+      rules: {
+        required: (value) => !!value || "Info needed!",
+        minLength: (value) =>
+          value.length >= 5 || "Product needs to have atleast 5 characters ",
+      },
     };
   },
 
   computed: {
-    ...mapState(["posts"])
+    ...mapState(["posts"]),
   },
 
   methods: {
@@ -128,7 +160,7 @@ export default {
     async deleteProduct(product) {
       console.log(product.id);
       await this.$store.dispatch("removeProduct", {
-        product_id: product.id
+        product_id: product.id,
       });
       this.productsArray.splice(this.productsArray.indexOf(product), 1);
       this.productDeletedSuccesful = true;
@@ -139,7 +171,7 @@ export default {
       await this.$store.dispatch("addProductToStore", {
         product_name: productname,
         product_price: productprice,
-        picture: picture
+        picture: picture,
       });
       this.productname = "";
       this.productprice = "";
@@ -148,14 +180,14 @@ export default {
       this.picture = null;
     },
     async setDiscounts() {
-      await this.$store.dispatch("DiscountProducts").then(result => {
+      await this.$store.dispatch("DiscountProducts").then((result) => {
         if (result.status == 200) {
           console.log("200");
           this.alert = true;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
