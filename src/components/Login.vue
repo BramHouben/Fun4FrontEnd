@@ -3,6 +3,7 @@
     <v-alert
       :value="alert"
       color="red"
+      id="alertLogin"
       border="top"
       transition="scale-transition"
       dismissible
@@ -12,8 +13,20 @@
     <v-row align="center">
       <v-row justify="space-around">
         <v-form ref="form" v-model="valid">
-          <v-text-field v-model="email" :rules="emailRegels" label="E-mail" required></v-text-field>
-          <v-text-field type="password" v-model="password" label="Wachtwoord" required></v-text-field>
+          <v-text-field
+            id="textFieldUsername"
+            v-model="email"
+            :rules="emailRegels"
+            label="E-mail"
+            required
+          ></v-text-field>
+          <v-text-field
+            id="textFieldPassword"
+            type="password"
+            v-model="password"
+            label="Wachtwoord"
+            required
+          ></v-text-field>
           <v-btn
             :disabled="!valid"
             color="primary"

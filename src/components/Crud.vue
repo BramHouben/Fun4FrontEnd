@@ -70,6 +70,7 @@
           <v-btn
             :disabled="!valid"
             color="success"
+            id="addButtonProduct"
             class="mr-4"
             v-on:click="addProduct(productname,productprice,picture)"
           >Add Product</v-btn>

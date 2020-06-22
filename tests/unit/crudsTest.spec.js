@@ -44,6 +44,10 @@ describe('Crud.vue', () => {
 
         expect(wrapper.exists()).toBe(true);
     });
+
+    it('renders a vue instance', () => {
+        wrapper.find("#addButtonProduct").trigger("click");
+    });
 })
 
 describe('Account.vue', () => {
@@ -71,6 +75,7 @@ describe('Account.vue', () => {
     it('renders a vue instance', () => {
         expect(wrapper.isVueInstance()).toBe(true);
     });
+
 
     it('renders page', () => {
 

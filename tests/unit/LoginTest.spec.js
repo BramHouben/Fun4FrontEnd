@@ -21,14 +21,27 @@ describe('Login.vue', () => {
 
     beforeEach(() => {
         Vue.use(vuetify);
-        store = new Vuex.Store({
-            actions,
-            getters,
+        actions = {
+                loginUser: jest.fn()
+            },
+            // store = new Vuex.Store({
+            //     actions
+            // }),
 
-        })
+            store = new Vuex.Store({
+                actions,
+                getters,
+                store
+
+            })
         wrapper = shallowMount(Login, {
             store,
-            localVue
+            localVue,
+            propsData: {
+                email: "test123@test.com",
+                password: "test123!",
+                valid: true
+            }
         });
     });
 
@@ -56,6 +69,25 @@ describe('Login.vue', () => {
         expect(wrapper.find('#buttonLogin').exists()).toBe(true);
 
     });
+    it('has a textfieldUserame', () => {
+        expect(wrapper.contains('#textFieldUsername')).toBe(true)
+    });
+    it('has a textfieldPassword', () => {
+        expect(wrapper.contains('#textFieldPassword')).toBe(true)
+    });
+    it('has a textfieldAlert', () => {
+        expect(wrapper.contains('#alertLogin')).toBe(true)
+    });
+    it('btn click', () => {
 
+        const button = wrapper.find('#buttonLogin')
+        button.trigger('click')
+        expect(wrapper.vm.email).toBe("")
+    });
+    // it(' test', () => {
 
+    //     wrapper.find('#buttonLogin').trigger('click')
+
+    //     expect(actions.loginUser).toHaveBeenCalled()
+    // })
 });
