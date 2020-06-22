@@ -4,10 +4,17 @@
     <v-row align="center">
       <v-row justify="space-around">
         <v-form ref="form" v-model="valid" @submit.prevent="validate">
-          <v-text-field v-model="email" :rules="emailRegels" label="E-mail" required></v-text-field>
+          <v-text-field
+            id="textFieldEmail"
+            v-model="email"
+            :rules="emailRegels"
+            label="E-mail"
+            required
+          ></v-text-field>
 
           <v-text-field
             type="password"
+            id="textFieldPassword"
             v-model="password"
             :rules="passwordRegels"
             label="Wachtwoord"
@@ -24,12 +31,20 @@
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
-              <v-text-field v-model="date" label="Geboortedatum" readonly v-on="on" required></v-text-field>
+              <v-text-field
+                v-model="date"
+                label="Geboortedatum"
+                readonly
+                v-on="on"
+                required
+              ></v-text-field>
             </template>
             <v-date-picker v-model="date" no-title scrollable>
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+              <v-btn text color="primary" @click="$refs.menu.save(date)"
+                >OK</v-btn
+              >
             </v-date-picker>
           </v-menu>
 
@@ -41,7 +56,13 @@
             :rules="checkboxRegels"
           ></v-checkbox>
 
-          <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Registreren</v-btn>
+          <v-btn
+            :disabled="!valid"
+            color="success"
+            class="mr-4"
+            @click="validate"
+            >Registreren</v-btn
+          >
         </v-form>
       </v-row>
     </v-row>
@@ -57,16 +78,16 @@ export default {
     date: new Date().toISOString().substr(0, 10),
     menu: false,
     emailRegels: [
-      v => !!v || "E-mail is verplicht",
-      v => /.+@.+\..+/.test(v) || "Email moet echt zijn"
+      (v) => !!v || "E-mail is verplicht",
+      (v) => /.+@.+\..+/.test(v) || "Email moet echt zijn",
     ],
     Checkbox: false,
-    checkboxRegels: [v => !!v || "Je moet het vinkje aanklikken!"],
+    checkboxRegels: [(v) => !!v || "Je moet het vinkje aanklikken!"],
 
     passwordRegels: [
-      v => !!v || "Wachtwoord is verplicht",
-      v => (v && v.length >= 5) || "minimaal 5 karakter"
-    ]
+      (v) => !!v || "Wachtwoord is verplicht",
+      (v) => (v && v.length >= 5) || "minimaal 5 karakter",
+    ],
   }),
 
   methods: {
@@ -74,11 +95,11 @@ export default {
       if (this.$refs.form.validate()) {
         this.$store.dispatch("registerUser", {
           email: this.email,
-          password: this.password
+          password: this.password,
         });
         this.$router.push("/about");
       }
-    }
-  }
+    },
+  },
 };
 </script>

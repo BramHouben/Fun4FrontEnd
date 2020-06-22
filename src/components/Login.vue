@@ -7,7 +7,8 @@
       border="top"
       transition="scale-transition"
       dismissible
-    >Login Failed</v-alert>
+      >Login Failed</v-alert
+    >
     <h1>Login</h1>
 
     <v-row align="center">
@@ -33,7 +34,8 @@
             class="mr-4"
             id="buttonLogin"
             @click="validate"
-          >Inloggen</v-btn>
+            >Inloggen</v-btn
+          >
         </v-form>
       </v-row>
     </v-row>
@@ -49,7 +51,7 @@ export default {
       // v => !!v || "E-mail is verplicht",
       // v => /.+@.+\..+/.test(v) || "Email moet echt zijn"
     ],
-    alert: false
+    alert: false,
   }),
 
   methods: {
@@ -68,7 +70,7 @@ export default {
     async Setuser() {
       await this.$store.dispatch("loginUser", {
         email: this.email,
-        password: this.password
+        password: this.password,
       });
 
       if (this.$store.state.userloggedin == true) {
@@ -79,7 +81,7 @@ export default {
       } else {
         this.alert = true;
       }
-    }
+    },
     // async setName() {
     //   this.$store.dispatch("getUsername");
     // }
@@ -92,7 +94,7 @@ export default {
   computed: {
     currentuserget() {
       return this.$store.state.currenUser;
-    }
-  }
+    },
+  },
 };
 </script>
