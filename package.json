@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -22,14 +23,17 @@
   "devDependencies": {
     "@mdi/font": "^4.9.95",
     "@vue/cli-plugin-babel": "~4.4.1",
+    "@vue/cli-plugin-e2e-nightwatch": "^4.4.4",
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-router": "^4.2.3",
     "@vue/cli-plugin-unit-jest": "^4.2.3",
     "@vue/cli-service": "~4.2.0",
     "@vue/test-utils": "^1.0.0-beta.32",
     "babel-eslint": "^10.0.3",
+    "chromedriver": "83",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "geckodriver": "^1.19.1",
     "jest": "^25.1.0",
     "vue-template-compiler": "^2.6.11"
   },
@@ -46,15 +50,17 @@
       "parser": "babel-eslint"
     },
     "rules": {},
-    "overrides": [{
-      "files": [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
-      "env": {
-        "jest": true
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
       }
-    }]
+    ]
   },
   "browserslist": [
     "> 1%",
